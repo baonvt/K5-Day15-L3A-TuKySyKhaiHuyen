@@ -4,7 +4,7 @@
 > Viết **trước** khi đọc dòng data đầu tiên hay hỏi người đầu tiên, để không sửa cho khớp kết quả. Kết quả ngược giả thuyết vẫn đủ điểm nếu số là thật.
 
 - Ngày ghi nhận: 27/11/2026 (giờ Việt Nam), trước khi thu thập bằng chứng cho bài này.
-- Người dùng chính: người mua hàng online ở Việt Nam đang đọc review để cân nhắc một sản phẩm; ngách sản phẩm chờ nhóm xác nhận.
+- Người dùng chính: người mua hàng online ở Việt Nam đang đọc review để cân nhắc một sản phẩm; ở thời điểm viết giả thuyết, nhóm chưa chọn ngách. Khi hoàn thiện CP1, nhóm chọn sản phẩm công nghệ.
 - **Mình nghĩ:** người mua khó đánh giá độ tin cậy và tổng hợp ưu, nhược điểm từ nhiều review, dẫn đến mất thời gian và có thể mua không phù hợp rồi đổi trả.
 - **Nguồn của giả thuyết:** mô tả bài toán do nhóm cung cấp; chưa phải kết luận được xác minh.
 - **Có thể còn cách giải thích khác:** chưa khảo sát; chưa có dữ liệu để kết luận nguyên nhân.

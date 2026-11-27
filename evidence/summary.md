@@ -21,7 +21,7 @@ Xem nguyên văn tại [S01](public-sources.md#s01), [S02](public-sources.md#s02
 
 ## Kết luận và phần còn thiếu
 
-Các tài liệu hỗ trợ nhận định rằng thao túng review là vấn đề có thật. Chưa đủ dữ liệu để xác minh quy mô pain, nguyên nhân mua không phù hợp hoặc số lượt đổi trả của nhóm người dùng mục tiêu. Chưa chốt ngách và ngưỡng kiểm chứng giả thuyết; không chốt ngưỡng sau khi đã xem kết quả để làm giả việc kiểm chứng trước.
+Các tài liệu hỗ trợ nhận định rằng thao túng review là vấn đề có thật. Chưa đủ dữ liệu để xác minh quy mô pain, nguyên nhân mua không phù hợp hoặc số lượt đổi trả của nhóm người dùng mục tiêu. Nhóm đã chọn ngách sản phẩm công nghệ. Khi thu thập các tài liệu trên, nhóm chưa đặt ngưỡng kiểm chứng giả thuyết.
 
 Ví dụ 4,8 sao giảm còn 4,1 sao trong ý tưởng của nhóm chỉ là minh hoạ, không phải kết quả đo. Chưa có 300–500 review được nhóm gán nhãn, chưa có bộ train/test hay kết quả precision, recall, F1.
 

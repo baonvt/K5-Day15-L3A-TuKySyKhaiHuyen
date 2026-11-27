@@ -2,7 +2,7 @@
 
 ## 1. Cách thu thập nguồn công khai
 
-Ngày thực hiện: 27/11/2026, giờ Việt Nam. Nhóm yêu cầu nguồn chuẩn và ít nhất 5 trích dẫn nguyên văn; chưa chốt ngách sản phẩm hoặc ngưỡng kiểm chứng pain.
+Ngày thực hiện: 27/11/2026, giờ Việt Nam. Nhóm yêu cầu nguồn chuẩn và ít nhất 5 trích dẫn nguyên văn; tại thời điểm tìm tài liệu, nhóm chưa chọn ngách hoặc đặt ngưỡng kiểm chứng pain. Nhóm chọn ngách sản phẩm công nghệ sau bước này.
 
 Giai đoạn này là nghiên cứu tài liệu công khai. Chưa thực hiện lấy mẫu review của sản phẩm hay bài kể trải nghiệm của người mua. Nội dung dưới ghi quy trình đã làm, không nhận là một kế hoạch lấy mẫu đã đăng ký trước.
 

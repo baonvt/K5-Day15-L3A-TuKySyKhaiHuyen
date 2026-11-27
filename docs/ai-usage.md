@@ -1,6 +1,6 @@
 # Khai báo dùng AI
 
-Nhóm sử dụng Codex để đọc bộ đề, đối chiếu yêu cầu CP1/CP2, sao chép khung nộp và ghi bản nháp từ thông tin nhóm cung cấp. Theo yêu cầu tiếp theo, Codex tìm tài liệu công khai và bổ sung 5 trích dẫn có nguồn. Ngách, nhãn review và chuẩn đạt vẫn chờ nhóm xác nhận.
+Nhóm sử dụng Codex để đọc bộ đề, đối chiếu yêu cầu CP1/CP2, sao chép khung nộp và ghi bản nháp từ thông tin nhóm cung cấp. Theo yêu cầu tiếp theo, Codex tìm tài liệu công khai và bổ sung 5 trích dẫn có nguồn. Nhóm đã xác nhận ngách sản phẩm công nghệ và ba nhãn review cho CP1. Chuẩn đạt còn chờ chốt ở CP2.
 
 | Việc đã thực hiện | Công cụ AI | Phần AI làm | Người kiểm |
 |---|---|---|---|

@@ -8,9 +8,9 @@
 
 ## CP1 — Nội dung chuẩn bị nộp
 
-**Bài toán:** Người mua online khó phân biệt review thật với seeding và mất nhiều thời gian đọc, tổng hợp đánh giá. Vì vậy, họ có thể mua phải sản phẩm không phù hợp rồi tốn công đổi trả.
+**Bài toán:** Khi mua đồ công nghệ online, người mua mất thời gian đọc review mà vẫn khó biết đâu là trải nghiệm thật, đâu là lời quảng cáo. Họ có thể chọn nhầm sản phẩm rồi phải đổi trả.
 
-**Lát cắt dự kiến:** Người mua gửi bộ review của một sản phẩm để hệ thống đánh giá độ tin cậy, tóm tắt ưu nhược điểm và tính lại điểm sao, giúp họ cân nhắc trước khi đặt hàng.
+**Lát cắt dự kiến:** Với một sản phẩm công nghệ người mua đang cân nhắc, hệ thống gắn nhãn dự đoán cho từng review, giải thích lý do rồi dùng các review được giữ lại để tóm tắt ưu nhược điểm và tính lại điểm sao.
 
 **Canvas 7 dòng:** [canvas.md](canvas.md).
 
@@ -20,7 +20,7 @@ Ba chức năng MVP theo ý tưởng nhóm:
 2. Tóm tắt ưu điểm, nhược điểm và vấn đề thường gặp từ tập review được giữ sau lọc.
 3. So sánh điểm sao ban đầu với điểm sao tính lại sau lọc.
 
-Mức dự kiến: AI gợi ý, người mua quyết định. Chưa chọn ngách giữa các phương án nhóm nêu; cách gọi nhãn review và chuẩn đánh giá bằng số sẽ được chốt cho CP2. Các tính năng nâng cao trong ý tưởng ban đầu chưa thuộc bản CP1 này.
+Nhóm chọn ngách sản phẩm công nghệ. Ba nhãn “thật”, “nghi ngờ”, “giả” thể hiện dự đoán của hệ thống. Người mua xem lý do rồi tự quyết định. Nhóm sẽ chốt chuẩn đạt bằng số ở CP2.
 
 | Yêu cầu CP1 | Tình trạng |
 |---|---|
