@@ -9,5 +9,6 @@ Nhóm sử dụng Codex để đọc bộ đề, đối chiếu yêu cầu CP1/C
 | Nháp Canvas và trạng thái bằng chứng | Codex | Viết lại ý tưởng nhóm; ghi rõ giả thuyết chưa được kiểm chứng | Chưa có xác nhận đã kiểm của nhóm |
 | Tìm tài liệu công khai | Codex và công cụ duyệt web | Đọc nguồn gốc, ghi URL/ngày/vị trí của 5 trích dẫn; phân biệt dữ liệu quốc tế, nhận định và ví dụ minh hoạ | Chưa có xác nhận đã kiểm của nhóm |
 | Hoàn thiện hồ sơ CP1 | Codex | Điền repo công khai, viết bài toán và lát cắt, thống nhất README với Canvas và TEAMS; kiểm định dạng bằng bộ khung | Nhóm đã chốt phân công theo tên; chưa xác nhận đã kiểm tay toàn bộ nội dung |
+| Định dạng input/output của `answer()` | Claude Code | Soạn nháp `docs/answer-format.md` theo yêu cầu của Hiệp: định dạng input, 3 loại output, nhãn review, cách tính điểm sao | Hiệp và Phong duyệt trước khi khoá metric CP2 |
 
 Đã nghiên cứu tài liệu công khai; chưa thu thập/gán nhãn bộ review sản phẩm, phỏng vấn, khảo sát, đánh giá mô hình hoặc mô phỏng chi phí. Không có kết quả kiểm tay của thành viên hay điểm số mô hình để khai báo.
