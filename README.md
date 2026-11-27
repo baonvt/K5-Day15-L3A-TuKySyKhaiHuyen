@@ -20,7 +20,7 @@ Ba chức năng MVP theo ý tưởng nhóm:
 2. Tóm tắt ưu điểm, nhược điểm và vấn đề thường gặp từ tập review được giữ sau lọc.
 3. So sánh điểm sao ban đầu với điểm sao tính lại sau lọc.
 
-Nhóm chọn ngách sản phẩm công nghệ. Ba nhãn “thật”, “nghi ngờ”, “giả” thể hiện dự đoán của hệ thống. Người mua xem lý do rồi tự quyết định. Nhóm sẽ chốt chuẩn đạt bằng số ở CP2.
+Nhóm chọn ngách sản phẩm công nghệ. Ba nhãn “Độ tin cậy cao”, “Chưa rõ độ tin cậy” và “Độ tin cậy thấp” thể hiện dự đoán của hệ thống. Người mua xem lý do rồi tự quyết định. Nhóm sẽ chốt chuẩn đạt bằng số ở CP2.
 
 | Yêu cầu CP1 | Tình trạng |
 |---|---|
