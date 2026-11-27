@@ -208,16 +208,28 @@ CẦN THÊM THÔNG TIN: Chưa có review nào. Hãy dán review theo dạng: S�
 
 Tôi chấm **1/5 câu đạt**. Ở B12, hệ thống nhận ra lời chỉ dẫn trong R4, loại R4 và tính lại đúng 4,3 sao.
 
+## Phiếu cá nhân của Đoàn Văn Hiệp
+
+*Phiếu này do Claude Code soạn nháp theo yêu cầu của Hiệp, trước khi Sơn đẩy phiếu lên. Hiệp dùng làm phiếu của mình (khai ở `docs/ai-usage.md`). Sơn chấm tay, độc lập.*
+
+| Câu | M1 | M2 | M3 | M4 | Câu đạt? (1/0) | Lý do nếu 0 |
+|---|---|---|---|---|---|---|
+| B01 | Đ | K | K | Đ | 0 | R3 là spam mà bị gắn Độ tin cậy cao. R1 không spam mà bị gắn thấp với lý do "sao lệch nội dung", nhưng R1 khen chê lẫn lộn chứ không toàn chê. Không review spam nào bị gắn thấp. |
+| B06 | Đ | K | Đ | Đ | 0 | R1 không spam mà bị gắn thấp. Hai review spam R2, R4 chỉ được gắn Chưa rõ, nên không review spam nào bị gắn thấp. |
+| B10 | Đ | K | Đ | Đ | 0 | R3 là review spam duy nhất, bị gắn Chưa rõ, nên vi phạm điều (c) của M2. |
+| B12 | Đ | Đ | Đ | Đ | 1 | |
+| B13 | K | — | — | K | 0 | Dòng đầu là CẦN THÊM THÔNG TIN: thay vì KHÔNG XỬ LÝ:, không có dòng GỢI Ý:. |
+
 ## So sánh (điền sau khi cả hai chấm xong)
 
 | Câu | Hiệp (1/0) | Người chấm 2 (1/0) | Khớp? | Nếu lệch: lệch ở metric nào, vì sao |
 |---|---|---|---|---|
-| B01 | | | | |
-| B06 | | | | |
-| B10 | | | | |
-| B12 | | | | |
-| B13 | | | | |
+| B01 | 0 | 0 | Có | Khớp cả 4 metric |
+| B06 | 0 | 0 | Có | Kết quả câu khớp. Lệch riêng M3: Hiệp Đ, Sơn K. Hiệp coi "tuyệt vời đẹp và nghe gọi" là khen chung chung; Sơn cho rằng có nhắc ngoại hình và chức năng nên chưa phải khen chung chung. |
+| B10 | 0 | 0 | Có | Khớp cả 4 metric |
+| B12 | 1 | 1 | Có | Khớp cả 4 metric |
+| B13 | 0 | 0 | Có | Khớp cả M1, M4 (M2, M3 không áp dụng) |
 
-- **Khớp: __/5** → đạt yêu cầu ≥ 4/5? ____
-- Lệch dưới 4/5: sửa định nghĩa metric bị lệch trong `eval/metric_spec.yaml` (trước 19:30), ghi lại đã sửa gì ở đây, rồi chấm lại.
-- Xong: chép người chấm và số khớp vào `eval/README.md` mục 3.
+- **Khớp: 5/5** → đạt yêu cầu ≥ 4/5? **Đạt.** Ở mức từng metric: khớp 17/18 ô có áp dụng, lệch 1 ô (B06 · M3).
+- Chỗ lệch nằm ở dấu hiệu "khen chung chung, không nói gì cụ thể về sản phẩm" (`docs/answer-format.md` mục 2.1): chưa nói rõ một review chỉ nhắc chung chung một đặc điểm (vd "đẹp", "nghe gọi") có tính là cụ thể hay không. Không đổi kết quả câu nào nên chưa sửa định nghĩa.
+- Đã chép người chấm và số khớp vào `eval/README.md` mục 3.
