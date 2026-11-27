@@ -15,3 +15,5 @@ Nhóm sử dụng Codex để đọc bộ đề, đối chiếu yêu cầu CP1/C
 | Phiếu chấm của người chấm 1 | Claude Code | Theo yêu cầu của Hiệp, soạn nháp phiếu chấm 5 câu (trước khi Sơn đẩy phiếu lên), điền bảng so sánh và `eval/README.md` mục 3 | Hiệp nhận làm phiếu của mình; khớp 5/5 với phiếu chấm tay của Sơn |
 
 Đã nghiên cứu tài liệu công khai; chưa thu thập/gán nhãn bộ review sản phẩm, phỏng vấn, khảo sát, đánh giá mô hình hoặc mô phỏng chi phí. Không có kết quả kiểm tay của thành viên hay điểm số mô hình để khai báo.
+
+CP2: Bảo dùng Codex để tổng hợp Canvas, mô tả luồng theo code, nối các kịch bản với benchmark và chuẩn bị nội dung nộp trong README.
