@@ -1,28 +1,11 @@
-# Tổng hợp bằng chứng pain
+# Người mua gặp khó ở đâu khi xem review?
 
-Trạng thái ngày 27/11/2026: đã thu thập tài liệu công khai theo yêu cầu nhóm. Giả thuyết ban đầu ở `hypothesis.md`; các đoạn nguyên văn, ngày công bố, URL và giới hạn ở [public-sources.md](public-sources.md).
+**6/8 bài công khai (75%)** kể rằng người mua khó dùng review để chọn laptop hoặc tai nghe. Trong 4 bài tiếng Việt về laptop, 2 bài nêu khó khăn. Cả 4 bài tiếng Anh về tai nghe đều nêu khó khăn. Ngày xem là 27/11/2026. Có thể kiểm lại từng bài, câu trích và cách đếm trong [bảng bằng chứng D01–D08](data-mining.md#7-bài-đã-đọc-và-kết-quả-đếm).
 
-| Nguồn | Tiến độ thực tế | Đạt ngưỡng? |
-|---|---|---|
-| Nghiên cứu tài liệu công khai | Đã đọc 5 tài liệu nguồn gốc, ghi 5 trích dẫn ngắn | Đã có trích dẫn; chưa có phép đếm pain x/N của nhóm |
-| Đào review hoặc bài thảo luận của người dùng | Chưa chọn mẫu, chưa gắn nhãn | Chưa |
-| Phỏng vấn | Chưa có, theo thông tin nhóm cung cấp | Chưa |
-| Khảo sát | Chưa có, theo thông tin nhóm cung cấp | Chưa |
+Ở hai bài tiếng Việt, người mua vướng ở hai chỗ khác nhau. Một người đã xem review nhưng vẫn phải hỏi người dùng thực tế về độ chắc của thân máy. Người kia biết mình cần máy bền, nhưng các review lại ít nói đến bản lề, chốt và ốc vít. Với nhóm này, phần tóm tắt có ích nếu chỉ ra review nào thực sự nói đến chi tiết họ quan tâm. [Bài về thân máy](https://voz.vn/t/phan-van-chon-laptop-gaming-co-35tr.309464/) · [Bài về bản lề](https://voz.vn/t/nho-anh-em-tu-van-mua-laptop-choi-game-phan-khuc-gia-re.932958/)
 
-## Số chính và ý nghĩa
+Hai bài còn lại bằng tiếng Việt giúp hiểu giới hạn của con số trên. Người mua IdeaPad xem nhiều review và chọn được máy, sau đó đổi phiên bản vì hàng về sớm hơn. Người cân nhắc MacBook đọc về lỗi phần mềm rồi nghiêng sang bản i7. Cả hai đều có lý do để cân nhắc thêm, nhưng nội dung bài chưa đủ để tính là gặp khó khi dùng review. [Bài về IdeaPad](https://tinhte.vn/thread/review-laptop-lenovo-ideapad-5-pro-amd-5800h-sau-6-thang-su-dung.3502940/) · [Bài về MacBook](https://tinhte.vn/thread/da-e-chao-may-anh-chi-a-em-khong-ranh-ve-cong-nghe-em-xin-may-anh-chi-giup-voi-a.3375795/)
 
-- **5 trích dẫn / 5 tài liệu**: 4 từ cơ quan quản lý, 1 từ bài nghiên cứu đã xuất bản; trong đó có một nguồn Việt Nam. Đây là số tài liệu, không phải số người gặp pain.
-- S01 cung cấp bối cảnh trong nước; S02 có phương pháp và số liệu nghiên cứu tại Anh; S03 nói về tổn thất thời gian, tiền; S04 bàn về thao túng điểm sao; S05 nêu rủi ro gắn review sai sản phẩm. Xem nguồn và giới hạn tại `public-sources.md`.
-- Chưa có x/N của người mua Việt Nam hoặc số phút/tiền mất trên mỗi người; chưa có lịch phỏng vấn.
+Mẫu được tìm trên diễn đàn bằng các từ khóa như “phân vân” và “conflicting”, nên dễ gặp người đang có vướng mắc. Tỷ lệ 75% chỉ mô tả 8 bài này. Mẫu chưa cho biết bao nhiêu người mua Việt Nam gặp khó, review nào là giả, hay người mua mất trung bình bao nhiêu phút. Nhóm chưa có kết quả phỏng vấn hoặc khảo sát riêng.
 
-## Trích dẫn
-
-Xem nguyên văn tại [S01](public-sources.md#s01), [S02](public-sources.md#s02), [S03](public-sources.md#s03), [S04](public-sources.md#s04), [S05](public-sources.md#s05). Không biến các đoạn này thành lời người dùng được nhóm phỏng vấn.
-
-## Kết luận và phần còn thiếu
-
-Các tài liệu hỗ trợ nhận định rằng thao túng review là vấn đề có thật. Chưa đủ dữ liệu để xác minh quy mô pain, nguyên nhân mua không phù hợp hoặc số lượt đổi trả của nhóm người dùng mục tiêu. Nhóm đã chọn ngách sản phẩm công nghệ. Khi thu thập các tài liệu trên, nhóm chưa đặt ngưỡng kiểm chứng giả thuyết.
-
-Ví dụ 4,8 sao giảm còn 4,1 sao trong ý tưởng của nhóm chỉ là minh hoạ, không phải kết quả đo. Chưa có 300–500 review được nhóm gán nhãn, chưa có bộ train/test hay kết quả precision, recall, F1.
-
-Phần ≥5 trích dẫn từ tài liệu công khai đã được bổ sung. Để kết luận đủ nguồn bằng chứng CP3 theo guide 1.2, còn cần mẫu và phép đếm kiểm lại được nếu đi đường đào data, hoặc phỏng vấn ít nhất 3 người ngoài nhóm, hoặc khảo sát ít nhất 20 người ngoài nhóm. Dữ liệu giả dùng chạy thử không phải bằng chứng pain; chưa đánh dấu CP3 hoàn tất.
+Trước CP3, nhóm đã lưu **5 trích dẫn từ 5 tài liệu công khai**, gồm bốn nguồn quản lý và một bài nghiên cứu. Các nguồn này cung cấp bối cảnh về review trả phí, thao túng điểm sao và tác động lên người mua. Phép đếm 6/8 ở trên chỉ dùng bài của người mua. [Năm nguồn S01–S05](public-sources.md) · [Giả thuyết ban đầu](hypothesis.md)
