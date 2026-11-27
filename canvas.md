@@ -1,15 +1,15 @@
 # Canvas — Tứ kỵ sỹ khải huyền · Track D
 
-Bản chuẩn bị nộp CP1 ngày 27/11/2026. Nội dung dựa trên ý tưởng nhóm cung cấp; phân công theo tên đã được nhóm xác nhận. Chưa xác nhận đã nộp form CP1.
+CP1 · Lớp L3A · 27/11/2026
 
-| # | Dòng | Nhóm điền |
+| # | Nội dung | Nhóm điền |
 |---|---|---|
-| 1 | Track + lát cắt dự kiến | **D — Thương mại điện tử.** Hỗ trợ người mua đánh giá bộ review của một sản phẩm trước khi quyết định mua. |
-| 2 | Người dùng chính | Người mua online ở Việt Nam đang cân nhắc một sản phẩm và cần kiểm tra review trước khi đặt hàng. |
-| 3 | Pain một câu: ai — đang làm gì — vướng đâu — hậu quả | Người mua online đọc nhiều review nhưng khó nhận biết nội dung seeding và tổng hợp ưu, nhược điểm, nên mất thời gian và có thể mua không phù hợp rồi phải đổi trả. |
-| 4 | Bằng chứng đầu | Giả thuyết xuất phát từ bài toán nhóm cung cấp; đã tìm 5 tài liệu công khai và ghi 5 trích dẫn có nguồn tại [evidence/public-sources.md](evidence/public-sources.md), gồm nguồn quản lý Việt Nam và nghiên cứu quốc tế; chưa có mẫu review hoặc phép đếm pain của nhóm. |
-| 5 | **Lát cắt MỘT CÂU** | Một người mua online cung cấp bộ review của một sản phẩm để AI đánh giá độ tin cậy từng review và trả về một báo cáo hỗ trợ quyết định mua gồm lý do, ưu/nhược điểm và điểm sao điều chỉnh. |
-| 6 | AI tự làm đến đâu + lý do | **Mức dự kiến CP1: AI gợi ý, người mua quyết định.** Kết quả giúp đọc review và cân nhắc mua; đánh giá sai có thể ảnh hưởng người mua và người bán, nên độ tin cậy chỉ là nhận định cần kiểm tra, không phải xác thực review thật/giả. |
-| 7 | Phân công có tên | **Nguyễn Võ Thái Bảo:** đội trưởng, tổng hợp hồ sơ và nộp checkpoint; **Võ Sỹ Thái Sơn:** thu thập và kiểm tra bằng chứng; **Trần Nguyễn Anh Phong:** thiết kế và code bản chạy thử; **Đoàn Văn Hiệp:** bộ câu thử và đánh giá. Nhóm đã xác nhận phân công này. |
+| 1 | Track và hướng làm | **D — Thương mại điện tử.** Giúp người mua đọc và đánh giá review của một sản phẩm trước khi đặt hàng. |
+| 2 | Người dùng chính | Người mua online ở Việt Nam đang cân nhắc một sản phẩm nhưng chưa biết nên tin những review nào. |
+| 3 | Bài toán | Người mua online khó phân biệt review thật với seeding và mất nhiều thời gian đọc, tổng hợp đánh giá. Vì vậy, họ có thể mua phải sản phẩm không phù hợp rồi tốn công đổi trả. |
+| 4 | Bằng chứng ban đầu | Đã tìm 5 tài liệu công khai và lưu 5 trích dẫn có nguồn tại [evidence/public-sources.md](evidence/public-sources.md), gồm nguồn Việt Nam và nghiên cứu quốc tế. Nhóm chưa phỏng vấn, khảo sát hoặc thu thập bộ review riêng. |
+| 5 | Lát cắt dự kiến | Người mua gửi bộ review của một sản phẩm để hệ thống đánh giá độ tin cậy, tóm tắt ưu nhược điểm và tính lại điểm sao, giúp họ cân nhắc trước khi đặt hàng. |
+| 6 | Mức tự động và lý do | Hệ thống đưa ra gợi ý, người mua tự quyết định. Kết quả chỉ nêu dấu hiệu nghi vấn, vì gắn nhãn sai có thể khiến người mua chọn nhầm và ảnh hưởng người bán. |
+| 7 | Phân công | **Nguyễn Võ Thái Bảo:** đội trưởng, tổng hợp hồ sơ và nộp bài; **Võ Sỹ Thái Sơn:** thu thập và kiểm tra bằng chứng; **Trần Nguyễn Anh Phong:** thiết kế và code; **Đoàn Văn Hiệp:** bộ câu thử và đánh giá. |
 
-**CP2 — Đã đổi gì so với CP1:** Chưa chốt CP2. Khi cập nhật, ghi 1–3 dòng thay đổi so với bản CP1 nhóm thực sự nộp. Ngách sản phẩm, nhãn review và chuẩn đạt bằng số còn chờ nhóm chốt.
+**Cập nhật CP2:** Chưa thực hiện; ngách sản phẩm, nhãn review và tiêu chí đạt còn chờ chốt.

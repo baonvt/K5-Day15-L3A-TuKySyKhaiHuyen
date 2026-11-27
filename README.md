@@ -8,9 +8,9 @@
 
 ## CP1 — Nội dung chuẩn bị nộp
 
-**Bài toán:** Người mua online ở Việt Nam đọc nhiều review nhưng khó nhận biết nội dung seeding và tổng hợp ưu, nhược điểm của sản phẩm. Họ mất thời gian cân nhắc và có thể mua không phù hợp rồi phải đổi trả.
+**Bài toán:** Người mua online khó phân biệt review thật với seeding và mất nhiều thời gian đọc, tổng hợp đánh giá. Vì vậy, họ có thể mua phải sản phẩm không phù hợp rồi tốn công đổi trả.
 
-**Lát cắt dự kiến:** Một người mua online cung cấp bộ review của một sản phẩm để AI đánh giá độ tin cậy từng review và trả về một báo cáo hỗ trợ quyết định mua gồm lý do, ưu/nhược điểm và điểm sao điều chỉnh.
+**Lát cắt dự kiến:** Người mua gửi bộ review của một sản phẩm để hệ thống đánh giá độ tin cậy, tóm tắt ưu nhược điểm và tính lại điểm sao, giúp họ cân nhắc trước khi đặt hàng.
 
 **Canvas 7 dòng:** [canvas.md](canvas.md).
 
@@ -31,7 +31,7 @@ Mức dự kiến: AI gợi ý, người mua quyết định. Chưa chọn ngác
 | Repo GitHub công khai, người không đăng nhập đọc được | Đã kiểm bằng GitHub API không dùng xác thực ngày 27/11/2026; repo có `README.md`, `TEAMS.md`, `canvas.md`, `run.py` ở gốc |
 | Nộp form CP1 | Chưa xác nhận đã nộp; bộ đề đang để trống URL form, đội trưởng dùng link BTC cung cấp |
 
-**Trạng thái:** Nội dung hồ sơ CP1 đã hoàn thiện trong thư mục nộp. Các thay đổi tài liệu mới nhất cần được đẩy lên GitHub trước khi đội trưởng nộp form CP1.
+**Trạng thái:** Nội dung hồ sơ CP1 đã hoàn thiện. Đội trưởng dùng thông tin ở trên để nộp form CP1 do BTC cung cấp.
 
 ## Nhóm làm gì, khung làm gì
 
