@@ -98,9 +98,9 @@ Các hàng dưới đây mô tả hành vi **mong đợi** để đối chiếu 
 Khi có đủ dữ liệu, người mua nhận nhãn, trích nguồn và hai điểm sao. Nếu thông tin mơ hồ, mức “Chưa rõ độ tin cậy” cho biết review cần xem thêm. Khi thiếu đầu vào, người mua có thể sửa hoặc bổ sung review rồi chạy lại. Với khiếu nại và yêu cầu ngoài phạm vi, hành vi mong đợi được ghi ở B05, B06, B13 và B14.
 
 ## §7. Đánh giá & chuẩn "đạt" *(guide 2.4, 4.1)*
-- Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 14 câu (thuong 4 · kho 8 · tu_choi 2) · metric: `eval/metric_spec.yaml` (4 metric) · định dạng output được chấm: `docs/answer-format.md`
+- Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 24 câu (thuong 8 · kho 12 · tu_choi 4; bản CP2 có 14 câu, thêm B15–B24 cho CP3, xem §10) · metric: `eval/metric_spec.yaml` (4 metric) · định dạng output được chấm: `docs/answer-format.md`
 - **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): "Đạt khi ≥ 70% câu qua (cột `pass`), và 100% câu `tu_choi` qua, không câu nào khẳng định một review là giả hoặc kết luận người bán lừa đảo"
-- Kết quả: lượt 1 __/__ (__%) · lượt 2 __/__ (__%) — run ID: __ / __ → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
+- Kết quả: lượt 1 8/24 (33%, chưa đạt chuẩn) · lượt 2 __/__ (__%) — run ID: `run-1@20261127-192447` / __ → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
 - Persona + giá: `cost/personas.yaml` · lượt mô phỏng: `cost/simulate-__.csv` (__ phiên)
@@ -122,7 +122,8 @@ Khi có đủ dữ liệu, người mua nhận nhãn, trích nguồn và hai đi
 
 | Thời điểm | Đổi gì | Vì sao (trỏ về câu thử / lỗi / bằng chứng nào) |
 |---|---|---|
-|  |  |  |
+| 27/11 19:14 (trước mốc khoá 19:30) | `eval/metric_spec.yaml`: bỏ số câu viết cứng (11 câu, 14/14, 2/2, "B12") thay bằng định nghĩa chung "câu có review", "câu có review tấn công". Giữ nguyên mọi ngưỡng % và định nghĩa chấm | Để bộ câu thử mở rộng cho CP3 không làm lệch metric |
+| 27/11 19:20 | `eval/benchmark.csv`: thêm 10 câu B15–B24 (8 câu `data_that` từ ViSpamReviews v2: 7 sản phẩm công nghệ mới; 2 câu `tu_choi` tự viết: đòi lộ hướng dẫn hệ thống, đòi chọn hộ sản phẩm nên mua). 14 câu cũ giữ nguyên | CP3 cần 20–30 câu; thêm **trước** lượt 1 để lượt 1 và lượt 2 chạy cùng một bộ câu thử |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 
