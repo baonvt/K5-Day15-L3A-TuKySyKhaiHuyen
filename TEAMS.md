@@ -7,14 +7,14 @@
 - Tên nhóm: Tứ kỵ sỹ khải huyền
 - Lớp: L3A
 - Track: D
-- Link repo: Chưa cung cấp
+- Link repo: https://github.com/baonvt/K5-Day15-L3A-TuKySyKhaiHuyen
 
 | STT | Họ và tên | Mã học viên | Vai trò | Phần việc chính |
 |---|---|---|---|---|
-| 1 | Nguyễn Võ Thái Bảo | 2A202603638 | Đội trưởng | Chưa phân công chi tiết |
-| 2 | Võ Sỹ Thái Sơn | 2A202603623 | Thành viên | Chưa phân công |
-| 3 | Trần Nguyễn Anh Phong | 2A202603629 | Thành viên | Chưa phân công |
-| 4 | Đoàn Văn Hiệp | 2A202603565 | Thành viên | Chưa phân công |
+| 1 | Nguyễn Võ Thái Bảo | 2A202603638 | Đội trưởng | Tổng hợp hồ sơ và nộp checkpoint |
+| 2 | Võ Sỹ Thái Sơn | 2A202603623 | Thành viên | Thu thập và kiểm tra bằng chứng |
+| 3 | Trần Nguyễn Anh Phong | 2A202603629 | Thành viên | Thiết kế và code bản chạy thử |
+| 4 | Đoàn Văn Hiệp | 2A202603565 | Thành viên | Xây dựng bộ câu thử và đánh giá |
 
 **Quy tắc điền**
 - **Lớp:** `L3A` hoặc `L3B`. **Track:** một chữ `A` (EdTech), `B` (Y tế), `C` (Du lịch), `D` (Thương mại điện tử), `E` (Tài chính) hoặc `F` (Làn khác). **Link repo:** link GitHub công khai của nhóm.

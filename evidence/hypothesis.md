@@ -17,3 +17,5 @@
 Nhóm yêu cầu tìm bằng chứng công khai có nguồn chuẩn và ít nhất 5 trích dẫn nguyên văn. Đã bổ sung 5 tài liệu nguồn gốc tại `public-sources.md`, với tiến độ và giới hạn ở `summary.md` và `data-mining.md`.
 
 Ngưỡng kiểm chứng giả thuyết vẫn chưa được nhóm chốt trước thu thập; không nhận đây là phép kiểm chứng đã đăng ký trước. Chưa có phỏng vấn hoặc khảo sát; nhóm xác nhận chưa phân công thành viên.
+
+Khi hoàn thiện CP1 sau đó, nhóm đã chốt phân công theo tên tại `../TEAMS.md` và `../canvas.md`; việc phân công không thay đổi giả thuyết hoặc tạo thêm kết quả nghiên cứu.
