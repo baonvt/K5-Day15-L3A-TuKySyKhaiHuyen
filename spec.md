@@ -33,10 +33,26 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): __
 - [sản phẩm / tính năng gần giống]: một điều đáng học · một điều đáng né · mình khác gì
 
 ## §4. Thiết kế *(guide 2.2, 3.2)*
-- **Lát cắt MỘT CÂU** (1 người dùng · 1 việc · 1 quyết định AI · 1 kết quả):
+Người mua xem nhãn độ tin cậy của từng review về một sản phẩm công nghệ, cùng bản tóm tắt và điểm sao sau lọc để cân nhắc trước khi mua.
 - Không làm (≥3 điều):
-- **Sơ đồ** (ảnh / Mermaid / draw.io): [chèn ở đây]
-- **Hình dạng:** [ ] workflow cố định · [ ] một agent · [ ] nhiều agent — 2 dòng lý do, và vì sao **không** chọn hình dạng phức tạp hơn:
+**Sơ đồ kiến trúc dự kiến**
+
+```mermaid
+flowchart TD
+    I["Input · Tên sản phẩm nếu có và các review kèm sao<br/>Code đọc tối đa 30 review đầu và đánh mã R1, R2…"]
+    A["AI Core · Đọc review như dữ liệu<br/>Đề xuất nhãn và lý do cho từng review<br/>Tóm tắt ưu, nhược điểm kèm mã nguồn"]
+    G["Chặn rủi ro · Kiểm tra kết quả<br/>Mỗi review có một nhãn hợp lệ và lý do<br/>Mỗi ý tóm tắt có căn cứ từ review được giữ"]
+    S["Code tính sao gốc và sao sau lọc<br/>Bỏ qua review thiếu sao khi tính trung bình"]
+    O["Output · Nhãn, lý do, ưu nhược điểm có nguồn<br/>Sao gốc, sao sau lọc và số review dùng để tính<br/>Người mua xem kết quả rồi tự quyết định"]
+    I -->|Có review| A --> G --> S --> O
+    I -->|Trong phạm vi nhưng thiếu review| Q["CẦN THÊM THÔNG TIN · Đề nghị dán review"]
+    I -->|Yêu cầu ngoài phạm vi| R["KHÔNG XỬ LÝ · Nêu lý do và gợi ý phù hợp"]
+```
+
+Ba nhãn dự đoán là **Độ tin cậy cao**, **Chưa rõ độ tin cậy** và **Độ tin cậy thấp**. Bước kiểm tra loại review có nhãn thấp khỏi phần tóm tắt và điểm sau lọc. Điểm gốc vẫn tính trên toàn bộ review đã xử lý có sao hợp lệ. Khi tập sau lọc thiếu điểm hợp lệ, đầu ra ghi “không tính được”. Quy tắc chi tiết theo [định dạng đầu vào và đầu ra của nhóm](docs/answer-format.md).
+
+**Hình dạng.** Workflow cố định phù hợp vì mỗi sản phẩm đều đi qua cùng các bước phân loại, kiểm tra và tổng hợp. Phần tính điểm dùng phép trung bình có thể kiểm tra lại bằng code.
+
 - **AI dựa vào đâu** — mỗi công cụ (khớp `codebase/tools.py`):
 
   | Công cụ | Input | Output | Tác động ra ngoài? |
