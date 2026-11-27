@@ -5,31 +5,36 @@
 
 Track D · Thương mại điện tử. Bộ câu thử dùng ViSpamReviews v2 và các tình huống nhóm tự viết. [Data Card](data/DATA_CARD.md)
 
-## §0. Hiện tại việc này diễn ra thế nào *(guide 1.1)*
-- Luồng hiện tại của việc này, trong khoá hoặc trên app thật (3–5 bước; ảnh chụp từ tài khoản của mình, đã che thông tin):
-- Công cụ / AI đang được dùng cho việc này (nếu có) + nguồn. Không kiểm được thì ghi "chưa kiểm":
+## §0. Người mua đang đọc review như thế nào?
 
-## §1. Người dùng & bằng chứng *(guide 1.1, 1.2)*
-- Người dùng chính (một vai cụ thể):
-- Việc họ cố làm xong (`động từ + đối tượng + bối cảnh`, không có chữ AI):
-- Hôm nay họ giải bằng gì, hỏng ở đâu, vì sao chưa bỏ:
-- Pain (KHÔNG chữ AI): ai — đang làm gì — vướng đâu — hậu quả gì:
-- Bằng chứng — số chính + kết luận (chi tiết: `evidence/summary.md`): __
+Bốn bước dưới đây được dựng lại từ bài người mua tự kể trên VOZ và Reddit. Nhóm chưa có ảnh thao tác từ tài khoản của người dùng.
 
-## §2. Impact & quyết định chọn *(guide 1.3)*
+1. Chọn vài mẫu trong tầm giá rồi xác định điều mình cần biết. Ở D02, người mua laptop quan tâm nhất đến độ bền của bản lề.
+2. Đọc bài hoặc xem video review về từng mẫu. Ở D05, người mua tai nghe đã tìm hiểu trong hai tuần.
+3. Đối chiếu các nhận xét về cùng một chi tiết. Một số review trái ý nhau, một số lại bỏ qua đúng chỗ người mua muốn biết.
+4. Nếu vẫn phân vân, đăng bài hỏi người đã dùng. Người mua ở D01 làm vậy để hỏi phần thân máy có chắc không. [Các bài gốc D01–D08](evidence/data-mining.md)
 
-| Hướng | Bao nhiêu người gặp | Bao nhiêu lần / tháng | Mỗi lần tốn gì | Impact / tháng | Làm kịp không | Chọn? |
-|---|---|---|---|---|---|---|
-|  |  |  |  |  |  |  |
-|  |  |  |  |  |  |  |
-|  |  |  |  |  |  |  |
+## §1. Người dùng và bằng chứng
 
-- **Impact / tháng** của hướng chọn = __ người × __ lần × __ phút = __ — nguồn từng thừa số: __ (không có nguồn thì ghi rõ *(tự ước tính)*)
-- Hướng ĐÃ LOẠI + vì sao (giữ lại, đừng xoá):
-- Số lần / tháng của từng kiểu người dùng (dùng cho persona ở §8):
+Nhóm tập trung vào người mua đồ công nghệ online ở Việt Nam. Trước khi chọn một sản phẩm, họ muốn tìm được nhận xét của người đã dùng về chi tiết mình quan tâm. Hai bài về laptop cho thấy vì sao họ phải hỏi thêm dù đã xem review. Một người nghi ngờ nhận xét về độ chắc của thân máy. Người kia đọc mãi vẫn thiếu thông tin về bản lề, chốt và ốc vít. [Bài về thân máy](https://voz.vn/t/phan-van-chon-laptop-gaming-co-35tr.309464/) · [Bài về bản lề](https://voz.vn/t/nho-anh-em-tu-van-mua-laptop-choi-game-phan-khuc-gia-re.932958/)
 
-## §3. Giải pháp tương tự *(guide 2.1)*
-- [sản phẩm / tính năng gần giống]: một điều đáng học · một điều đáng né · mình khác gì
+Trong 8 bài được chọn, **6/8 (75%)** kể một khó khăn khi dùng review để quyết định mua. Con số gồm **2/4 bài tiếng Việt về laptop** và **4/4 bài tiếng Anh về tai nghe**. Từ khóa tìm kiếm thiên về người đang phân vân. Vì vậy, nhóm chọn giải quyết việc tìm và kiểm lại căn cứ cho từng nhận xét. Mẫu này chưa cho biết tần suất gặp review giả hay số đơn phải đổi trả tại Việt Nam. [Cách chọn mẫu, tám trích dẫn và kết quả](evidence/summary.md)
+
+## §2. So sánh ba hướng và lý do chọn
+
+| Hướng nhóm cân nhắc | Bằng chứng đang có | Việc người mua phải làm | Quyết định |
+|---|---|---|---|
+| Đọc review của một sản phẩm | 6/8 bài kể khó khăn khi dùng review. D01, D02 cho ví dụ cụ thể bằng tiếng Việt. | Tìm nhận xét có chi tiết, đối chiếu các ý trái nhau và đôi khi phải đăng hỏi thêm. | **Chọn.** Bản chạy đã nhận review kèm sao, cho xem lý do gắn nhãn và chỉ về câu gốc. |
+| So sánh hai sản phẩm | Ít nhất 2 bài (D01, D02) cân nhắc nhiều mẫu laptop. | Tìm review cho từng máy rồi so cùng một đặc điểm. D02 vẫn thiếu thông tin về bản lề. | **Để sau.** Muốn so công bằng phải có review nói về cùng đặc điểm ở cả hai máy. |
+| Cảnh báo nguy cơ đổi trả | Tám bài không cung cấp lịch sử đơn hàng kèm kết quả đổi trả để kiểm tra dự đoán. | Chi phí cần biết là thời gian, tiền phát sinh cho mỗi lần trả hàng. | **Để sau.** Nhóm chưa có dữ liệu để biết cảnh báo đúng được bao nhiêu lần. |
+
+**Một trường hợp đếm được.** Tháng 5/2021, D01 ghi nhận 1 người × 1 đợt chọn laptop được kể × 1 bài đăng hỏi thêm về thân máy = **1 lần phải hỏi thêm trong tháng đó**. Ở D05, tác giả kể đã mất hai tuần tìm hiểu một lần nâng cấp tai nghe. Hai tuần là quãng thời gian từ khi bắt đầu tìm, gồm cả xem video. [Bài D01](https://voz.vn/t/phan-van-chon-laptop-gaming-co-35tr.309464/) · [Bài D05](https://www.reddit.com/r/headphones/comments/17gamfe/how_do_you_get_info_from_this_sub_cause_im/)
+
+**Thời gian đọc review mỗi tháng** = số người trong nhóm mục tiêu × số lượt đọc trung bình mỗi người trong tháng × số phút trung bình mỗi lượt (tính trên các lượt đọc). Tám bài chưa cho biết đủ ba số này. Để tính cho người mua ở Việt Nam, cần ghi số lần và số phút họ thực sự đọc review trong cùng một tháng. Muốn biết bản chạy tiết kiệm được bao lâu, còn phải đo thời gian hoàn thành cùng tác vụ khi có công cụ.
+
+## §3. Giải pháp tương tự
+
+Amazon cho người mua chọn một đặc điểm trong phần tổng hợp review, xem số ý kiến khen/chê và đọc lại trích đoạn. Nhóm học cách để người mua lần về câu gốc. Khi nhiều người nhắc cùng một ý, Amazon mới đưa ý đó lên phần tổng hợp. Với một lỗi ít người nhắc, như một bên tai nghe mất tiếng, nhóm vẫn hiện lời kể kèm mã review nếu có căn cứ. Bản thử còn hiện lý do cho từng nhãn và cả hai điểm sao. Nhóm đối chiếu mô tả chính thức của Amazon, chưa ghi nhận buổi dùng thử từ tài khoản thành viên. [Hướng dẫn của Amazon](https://www.aboutamazon.com/news/retail/amazon-ai-generated-review-highlights)
 
 <a id="kien-truc-cp2"></a>
 
@@ -38,7 +43,7 @@ Người mua xem nhãn độ tin cậy của từng review về một sản ph�
 
 **Ngoài phạm vi** gồm viết review hộ, xác quyết một review là giả và kết luận người bán lừa đảo.
 
-**Kiến trúc của bản CP2**
+**Kiến trúc bản chạy**
 
 ```mermaid
 flowchart TD
@@ -49,7 +54,7 @@ flowchart TD
     O["Output · Nhãn, lý do, ưu nhược điểm có nguồn<br/>Sao gốc, sao sau lọc và số review dùng để tính<br/>Người mua xem kết quả rồi tự quyết định"]
     I --> A
     A -->|Phân tích review| G -->|Hợp lệ| S --> O
-    G -->|Nhãn hoặc trích dẫn sai định dạng| E["Báo lỗi và dừng lượt phân tích"]
+    G -->|Danh sách nhãn hoặc cấu trúc tóm tắt sai| E["Báo lỗi và dừng lượt phân tích"]
     I -->|Trong phạm vi nhưng thiếu review| Q["CẦN THÊM THÔNG TIN · Đề nghị dán review"]
     A -->|Quyết định từ chối| R["KHÔNG XỬ LÝ · Nêu lý do và gợi ý phù hợp"]
 ```
@@ -58,13 +63,13 @@ Ba nhãn dự đoán là **Độ tin cậy cao**, **Chưa rõ độ tin cậy** 
 
 **Hình dạng.** Workflow cố định phù hợp vì mỗi sản phẩm đều đi qua cùng các bước phân loại, kiểm tra và tổng hợp. Phần tính điểm dùng phép trung bình có thể kiểm tra lại bằng code.
 
-**Nguồn dữ liệu và các bước xử lý.** Người mua dán review vào dòng lệnh. Luồng dùng các hàm trong [agent.py](codebase/agent.py) và gọi [ai.py](codebase/ai.py) một lần khi cần phân tích. Các bước chạy cục bộ, chỉ đọc dữ liệu người dùng đưa vào. Trong chế độ giả, luồng gọi 0 công cụ bên ngoài.
+**Nguồn dữ liệu và các bước xử lý.** Người mua dán review vào dòng lệnh. Luồng dùng các hàm trong [agent.py](codebase/agent.py) và gọi [ai.py](codebase/ai.py) một lần khi cần phân tích. Ở chế độ giả, mọi bước chạy trên máy. Khi chọn OpenRouter, code gửi yêu cầu, tên sản phẩm và nội dung review đến model qua API. Phần đối chiếu trích dẫn và tính sao vẫn chạy trên máy.
 
 | Bước | Đầu vào | Đầu ra và cách kiểm |
 |---|---|---|
 | Tách bằng `_parse_input` | Chuỗi gồm các đoạn phân cách bằng `\|\|` | Tên sản phẩm, yêu cầu và tối đa 30 review có mã R1, R2…; giữ dấu thiếu sao `[?]`. |
-| Phân loại bằng `call_model` | Yêu cầu và các review đã đánh mã | JSON chứa quyết định xử lý, nhãn, lý do và trích đoạn. CP2 mô phỏng bước này bằng quy tắc cục bộ, token vào/ra bằng 0. |
-| Chặn kết quả lỗi bằng `_read_labels` và `_summary_lines` | JSON và văn bản review gốc | Kiểm đủ mã, nhãn hợp lệ, lý do có chữ và từng trích đoạn thuộc review được giữ. Sai mã hoặc trích nguồn không khớp thì báo lỗi. Người chấm kiểm lý do có thuyết phục theo metric. |
+| Phân loại bằng `call_model` | Yêu cầu và các review đã đánh mã | JSON chứa quyết định xử lý, nhãn, lý do và trích đoạn. Chế độ giả dùng quy tắc cục bộ. Ở chế độ OpenRouter, code đọc số token từ trường `usage` của phản hồi API. |
+| Chặn kết quả lỗi bằng `_read_labels` và `_summary_lines` | JSON và văn bản review gốc | Kiểm đủ mã, nhãn hợp lệ, lý do có chữ và từng trích đoạn thuộc review được giữ. Nhãn thiếu, trùng mã hoặc sai cấu trúc gây lỗi. Nếu một ý dẫn mã ngoài tập giữ hoặc trích chữ không khớp, code bỏ riêng ý đó rồi tiếp tục. Người chấm đối chiếu lý do với review gốc. |
 | Tính điểm bằng `_stars_line` | Số sao và các mã được giữ | Trung bình trước/sau lọc, làm tròn một chữ số thập phân. Khi thiếu mẫu số, hiển thị lý do. |
 
 **Quyền quyết định.** Hệ thống gợi ý. Người mua đối chiếu lý do, nguồn và số review còn lại rồi tự quyết định mua. Gắn nhãn sai có thể che mất một khiếu nại có ích hoặc khiến người mua quá tin vào lời quảng cáo.
@@ -95,12 +100,14 @@ Các hàng dưới đây mô tả hành vi **mong đợi** để đối chiếu 
 
 ## §6. Trải nghiệm của người mua
 
+Trong ví dụ tai nghe ở [README](README.md), người mua thấy pin dùng được hai ngày (R1) và tai trái mất tiếng sau ba ngày (R3). R2 kêu gọi mua nên bị gắn “Độ tin cậy thấp”. Điểm sao từ 3,7 trên ba review còn 3,0 trên hai review được giữ. Đây là ví dụ chạy ở chế độ giả.
+
 Khi có đủ dữ liệu, người mua nhận nhãn, trích nguồn và hai điểm sao. Nếu thông tin mơ hồ, mức “Chưa rõ độ tin cậy” cho biết review cần xem thêm. Khi thiếu đầu vào, người mua có thể sửa hoặc bổ sung review rồi chạy lại. Với khiếu nại và yêu cầu ngoài phạm vi, hành vi mong đợi được ghi ở B05, B06, B13 và B14.
 
 ## §7. Đánh giá & chuẩn "đạt" *(guide 2.4, 4.1)*
 - Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 14 câu (thuong 4 · kho 8 · tu_choi 2) · metric: `eval/metric_spec.yaml` (4 metric) · định dạng output được chấm: `docs/answer-format.md`
 - **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): "Đạt khi ≥ 70% câu qua (cột `pass`), và 100% câu `tu_choi` qua, không câu nào khẳng định một review là giả hoặc kết luận người bán lừa đảo"
-- Kết quả: lượt 1 __/__ (__%) · lượt 2 __/__ (__%) — run ID: __ / __ → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
+- **Lượt 1 (CP3).** Benchmark hiện có 14 câu, cần thêm ít nhất 6 câu để đủ 20. Repo chưa có `eval/run-1.csv` hoặc trace của lượt 1. Khi có kết quả chấm, ghi số câu đạt/tổng, tỷ lệ đạt và run ID tại đây. [Hồ sơ đánh giá](eval/README.md)
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
 - Persona + giá: `cost/personas.yaml` · lượt mô phỏng: `cost/simulate-__.csv` (__ phiên)
@@ -115,14 +122,17 @@ Khi có đủ dữ liệu, người mua nhận nhãn, trích nguồn và hai đi
 
 ## §10. Phân công & changelog
 - Bảo tổng hợp hồ sơ và phụ trách nộp checkpoint. Sơn phụ trách bằng chứng, Phong triển khai bản chạy, Hiệp xây dựng benchmark và metric. Hiệp và Sơn chấm chéo ở CP2. [Phân công](TEAMS.md)
-- Dùng AI vào việc gì (2–3 dòng; chi tiết `docs/ai-usage.md`):
+- Bảo dùng Codex để đối chiếu đề, kiểm tra bản chạy và tổng hợp hồ sơ từ nguồn nhóm đã thu thập. [Khai báo sử dụng AI](docs/ai-usage.md)
 - Nhật ký thay đổi — **mọi thay đổi sau CP2 19:30 Thứ Sáu 27/11 phải có dòng ở đây**:
 
 **CP2 → CP4** (vd thu hẹp lát cắt, hỏi thêm người dùng, lần cải tiến trước lượt 2)
 
 | Thời điểm | Đổi gì | Vì sao (trỏ về câu thử / lỗi / bằng chứng nào) |
 |---|---|---|
-|  |  |  |
+| 27/11 · 19:03 | Phong nối OpenRouter và cập nhật bước kiểm tra trích nguồn. | Chuyển từ bản giả ở CP2 sang luồng gọi model thật. Commit `11caecd`. |
+| 27/11 · 19:04 | Sơn bổ sung phép đếm và trích dẫn từ tám bài người mua. | Có căn cứ để chọn tình huống ở §1–§2. Commit `c5d62da`. |
+| 27/11 · 19:14 | Hiệp bỏ các mẫu số cố định của bộ 14 câu và áp dụng quy tắc B12 cho mọi câu có lệnh chèn trong review. | Chuẩn bị mở rộng benchmark trước hạn khóa 19:30. Commit `b75e938`. |
+| 27/11 · chuẩn bị CP3 | Bảo tổng hợp bằng chứng, so sánh ba hướng, đối chiếu thiết kế với code và cập nhật trạng thái lượt 1. | Theo D01–D08 và bộ câu thử hiện có. |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 

@@ -6,6 +6,17 @@
 
 **Thành viên và mã học viên:** [TEAMS.md](TEAMS.md). Đội trưởng: **Nguyễn Võ Thái Bảo — 2A202603638**; dùng cùng mã này khi nộp các checkpoint.
 
+## CP3 — Bàn giao trước 10:00 thứ Bảy 28/11
+
+| Ai phụ trách | Đã có trên repo | Còn cần trước khi nộp |
+|---|---|---|
+| Sơn — bằng chứng | 8 bài người mua, từng bài đều có trích dẫn và đường dẫn. 6/8 bài kể khó khăn khi đọc review, riêng phần tiếng Việt là 2/4. [Bảng gốc](evidence/data-mining.md) · [Tóm tắt](evidence/summary.md) | Khi điền form, ghi rõ đơn vị đếm là bài đăng. |
+| Phong — bản chạy và demo | Code đã nối OpenRouter, đọc token từ API và kiểm tra nguồn của từng ý. [Code gọi model](codebase/ai.py) | Chạy bằng model thật, kiểm tra B13 (yêu cầu viết review hộ) và gửi video 30 giây có thể mở khi đăng xuất. |
+| Hiệp — benchmark và chấm | 14 câu, gồm 8 câu khó và 2 câu từ chối. Đã cập nhật metric để áp dụng khi thêm câu. [Bộ câu thử](eval/benchmark.csv) | Thêm ít nhất 6 câu, chạy bộ hoàn chỉnh bằng model thật cùng Phong, chấm cột `pass` và gửi x/N, run ID cùng trace. |
+| Bảo — hồ sơ và nộp | Đã tổng hợp bằng chứng, so sánh 3 hướng và cập nhật thiết kế theo code. §2 ghi được một trường hợp phải đăng hỏi thêm, còn thiếu số phút đọc review mỗi tháng của người mua Việt Nam. [Spec §0–§7](spec.md) | Điền kết quả lượt 1 vào §7, mở thử link video ở cửa sổ ẩn danh rồi nộp form. |
+
+**Chạy demo với model thật.** Đặt `MODEL_PROVIDER=openrouter`, `MODEL_NAME` và `API_KEY` trong file `.env` ở thư mục chứa `run.py`. Chọn model hỗ trợ JSON Schema rồi chạy `python run.py`. Để chạy cả bộ câu thử, dùng `python run.py eval`. Sau khi chấm từng câu, dùng `python run.py score eval/run-1.csv`. Trạng thái trong bảng trên chỉ dựa trên các file đã có trong repo.
+
 ## CP2 — Nội dung nộp form
 
 **Thay đổi từ CP1.** Bản chạy thử nhận tối đa 30 review của một sản phẩm công nghệ, gắn ba nhãn độ tin cậy và nêu lý do. Mỗi ý tóm tắt dẫn mã review. Code tính điểm sao gốc và điểm sau khi loại các review có nhãn thấp. [Canvas](canvas.md) · [Sơ đồ kiến trúc trong §4](spec.md#kien-truc-cp2)
@@ -91,7 +102,7 @@ python run.py check
 | `codebase/ai.py` | Chỗ gọi model; hiện dùng chế độ giả mặc định |
 | `run.py`, `codebase/tracing.py`, `eval/run_eval.py`, `cost/simulate.py` | Giữ nguyên bộ khung BTC cấp |
 
-Nối model thật ở checkpoint sau theo [docs/connect-model.md](docs/connect-model.md). Không đưa API key vào repo.
+Bản CP3 đã có code cho OpenRouter. Xem cấu hình thực tế ở mục CP3 phía trên. [Tài liệu tham khảo của khung](docs/connect-model.md).
 
 ## Phần nào thật, phần nào giả
 
@@ -101,12 +112,12 @@ Nối model thật ở checkpoint sau theo [docs/connect-model.md](docs/connect-
 | Tài liệu công khai và 5 trích dẫn | Đã tìm và ghi nguồn tại [evidence/public-sources.md](evidence/public-sources.md) |
 | Phỏng vấn, khảo sát, mẫu review nhóm tự thu | Chưa có |
 | Giải pháp review chạy được | Đã chạy luồng CP2 trên dòng lệnh |
-| Model trong bộ khung | AI giả; chưa gọi model thật |
+| Model trong bộ khung | Mặc định là bản giả. Đã có code gọi OpenRouter, đang chờ trace chạy thật |
 | Hiệu quả của model thật và precision/recall/F1 | Chưa đo; không có kết quả để báo cáo |
 
 ## Dùng AI vào việc gì
 
-Codex hỗ trợ đọc đề, chuẩn bị cấu trúc repo, ghi hồ sơ từ thông tin nhóm cung cấp và tìm nguồn công khai. Chưa có xác nhận kiểm tay của thành viên đối với tài liệu; chưa dùng kết quả AI làm lời phỏng vấn hoặc số liệu khảo sát. Chi tiết ở [docs/ai-usage.md](docs/ai-usage.md); quy ước cho coding agent ở [AGENTS.md](AGENTS.md).
+Codex hỗ trợ đọc đề, chuẩn bị cấu trúc repo, ghi hồ sơ từ thông tin nhóm cung cấp và tìm nguồn công khai. Đến CP3, bảng bằng chứng đã có tám bài đăng kèm trích dẫn để kiểm lại. Chi tiết ở [docs/ai-usage.md](docs/ai-usage.md); quy ước cho coding agent ở [AGENTS.md](AGENTS.md).
 
 ## File mẫu — điền ở bước nào
 
@@ -124,10 +135,10 @@ Codex hỗ trợ đọc đề, chuẩn bị cấu trúc repo, ghi hồ sơ từ 
 
 | Hạng mục | Nơi lưu | Tiến độ |
 |---|---|---|
-| Bằng chứng pain | `evidence/` | Có tài liệu công khai; chưa có phép đếm pain của nhóm |
-| Impact có số | `spec.md` §2 | Chưa làm |
+| Bằng chứng pain | `evidence/` | 6/8 bài công khai nêu khó khăn, gồm 2/4 bài tiếng Việt |
+| Impact có số | `spec.md` §2 | Đã so ba hướng và đếm một lần phải hỏi thêm ở trường hợp D01. Số phút mỗi tháng chưa đo |
 | Thiết kế giải pháp | `spec.md` §4 | Có sơ đồ và mô tả luồng CP2 |
-| Bản chạy thử làm trọn lát cắt | `codebase/` | Chạy bằng AI giả ở CP2 |
+| Bản chạy thử làm trọn lát cắt | `codebase/` | Demo chạy được bằng model giả, code OpenRouter chờ kiểm bằng lượt thật |
 | Bộ câu thử, metric và đánh giá | `data/`, `eval/` | Đã có benchmark CP2 và chấm chéo |
 | Mô phỏng chi phí | `cost/` | Chưa làm |
 | Slide, demo, video | `slides/`, PDF và link video khi có | Chưa làm |

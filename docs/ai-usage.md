@@ -1,6 +1,6 @@
 # Khai báo dùng AI
 
-Nhóm sử dụng Codex để đọc bộ đề, đối chiếu yêu cầu CP1/CP2, sao chép khung nộp và ghi bản nháp từ thông tin nhóm cung cấp. Theo yêu cầu tiếp theo, Codex tìm tài liệu công khai và bổ sung 5 trích dẫn có nguồn. Nhóm đã xác nhận ngách sản phẩm công nghệ và ba nhãn review cho CP1. Chuẩn đạt còn chờ chốt ở CP2.
+Nhóm sử dụng Codex để đọc bộ đề, đối chiếu yêu cầu CP1/CP2, sao chép khung nộp và ghi bản nháp từ thông tin nhóm cung cấp. Theo yêu cầu tiếp theo, Codex tìm tài liệu công khai và bổ sung 5 trích dẫn có nguồn. Nhóm đã xác nhận ngách sản phẩm công nghệ và ba nhãn review cho CP1. Chuẩn đạt đã được ghi tại §7 ở bản CP2.
 
 | Việc đã thực hiện | Công cụ AI | Phần AI làm | Người kiểm |
 |---|---|---|---|
@@ -17,3 +17,5 @@ Nhóm sử dụng Codex để đọc bộ đề, đối chiếu yêu cầu CP1/C
 Đã nghiên cứu tài liệu công khai; chưa thu thập/gán nhãn bộ review sản phẩm, phỏng vấn, khảo sát, đánh giá mô hình hoặc mô phỏng chi phí. Không có kết quả kiểm tay của thành viên hay điểm số mô hình để khai báo.
 
 CP2: Bảo dùng Codex để tổng hợp Canvas, mô tả luồng theo code, nối các kịch bản với benchmark và chuẩn bị nội dung nộp trong README.
+
+CP3: Bảo dùng Codex đối chiếu các bài công khai, đếm lại bảng D01–D08, đọc mô tả Review Highlights của Amazon và tổng hợp §0–§7. Codex kiểm tra khung và chạy lại demo giả. Kết quả chấm lượt 1 sẽ lấy từ file của lượt chạy bằng model thật.
