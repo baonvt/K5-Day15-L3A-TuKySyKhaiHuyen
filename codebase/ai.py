@@ -48,6 +48,19 @@ API_KEY = (os.environ.get("API_KEY") or "").strip()
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 OPENROUTER_MAX_TOKENS = 4096
 
+# Dấu hiệu quyết định nhãn và nội dung giải thích hiển thị.
+REVIEW_SIGNALS = {
+    "trai_nghiem_cu_the": ("cao", "Review mô tả cụ thể về sản phẩm hoặc trải nghiệm sử dụng"),
+    "thieu_chi_tiet": ("chua_ro", "Review có quá ít chi tiết để đánh giá độ tin cậy"),
+    "tin_hieu_lan_lon": ("chua_ro", "Review có dấu hiệu lẫn lộn nên chưa đủ căn cứ để đánh giá"),
+    "khen_chung_chung": ("thap", "Review chỉ khen chung chung và thiếu chi tiết về sản phẩm"),
+    "san_pham_khac": ("thap", "Review nói về sản phẩm khác với sản phẩm đang được phân tích"),
+    "trung_lap": ("thap", "Câu chữ gần như trùng với một review khác trong cùng bộ"),
+    "quang_cao": ("thap", "Review có lời kêu gọi mua hoặc thông tin quảng cáo"),
+    "sao_lech_noi_dung": ("thap", "Điểm {stars} sao lệch rõ với nội dung đánh giá"),
+    "chi_dan_he_thong": ("thap", "Review chứa chỉ dẫn yêu cầu hệ thống thay đổi cách xử lý"),
+}
+
 SUMMARY_ITEM = {
     "type": "object",
     "properties": {
@@ -67,10 +80,10 @@ ANALYSIS_SCHEMA = {
                 "type": "object",
                 "properties": {
                     "ma": {"type": "string"},
-                    "nhan": {"type": "string", "enum": ["cao", "chua_ro", "thap"]},
-                    "ly_do": {"type": "string"},
+                    "dau_hieu": {"type": "string", "enum": list(REVIEW_SIGNALS)},
+                    "trich_dan": {"type": "string"},
                 },
-                "required": ["ma", "nhan", "ly_do"],
+                "required": ["ma", "dau_hieu", "trich_dan"],
                 "additionalProperties": False,
             },
         },
@@ -133,27 +146,28 @@ PRODUCT_TYPES = re.compile(
 )
 
 
-def _mock_label(review, product_type, duplicate, positive, negative):
+def _mock_signal(review, product_type, duplicate, positive, negative):
     content = review["noi_dung"]
-    if REVIEW_COMMAND.search(content):
-        return "thap", "Review chứa chỉ dẫn yêu cầu hệ thống thay đổi cách xử lý."
-    if PROMOTION.search(content):
-        return "thap", "Review có lời kêu gọi mua hoặc thông tin quảng cáo."
+    if command := REVIEW_COMMAND.search(content):
+        return "chi_dan_he_thong", command.group()
+    if promotion := PROMOTION.search(content):
+        return "quang_cao", promotion.group()
     if duplicate:
-        return "thap", f"Câu chữ gần như trùng với review {duplicate} trong cùng bộ."
+        return "trung_lap", content
     other_type = PRODUCT_TYPES.match(content.casefold())
     if product_type and other_type and other_type.group() != product_type.group():
-        return "thap", f"Review mở đầu bằng nhóm sản phẩm khác: {other_type.group()}."
-    if (review["sao"] == 5 and negative and not positive) or (
-        review["sao"] == 1 and positive and not negative
-    ):
-        return "thap", "Số sao lệch hẳn với nội dung đánh giá."
+        return "san_pham_khac", other_type.group()
+    if review["sao"] == 5 and negative and not positive:
+        return "sao_lech_noi_dung", negative[0]
+    if review["sao"] == 1 and positive and not negative:
+        return "sao_lech_noi_dung", positive[0]
     feature = FEATURE.search(content)
-    if not feature and GENERIC_PRAISE.search(content):
-        return "thap", "Review chỉ khen chung chung và thiếu chi tiết về sản phẩm."
+    praise = GENERIC_PRAISE.search(content)
+    if not feature and praise:
+        return "khen_chung_chung", praise.group()
     if feature and len(content.split()) >= 4:
-        return "cao", f"Review mô tả chi tiết liên quan đến {feature.group().lower()}."
-    return "chua_ro", "Review có quá ít chi tiết về trải nghiệm sử dụng."
+        return "trai_nghiem_cu_the", (positive + negative or [feature.group()])[0]
+    return "thieu_chi_tiet", content
 
 
 def _mock_analysis(payload):
@@ -187,9 +201,9 @@ def _mock_analysis(payload):
                 negative.append(clause)
             elif POSITIVE.search(clause):
                 positive.append(clause)
-        label, reason = _mock_label(review, product_type, duplicate, positive, negative)
-        result["nhan"].append({"ma": review_id, "nhan": label, "ly_do": reason})
-        if label != "thap":
+        signal, excerpt = _mock_signal(review, product_type, duplicate, positive, negative)
+        result["nhan"].append({"ma": review_id, "dau_hieu": signal, "trich_dan": excerpt})
+        if REVIEW_SIGNALS[signal][0] != "thap":
             for key, clauses in (("uu_diem", positive), ("nhuoc_diem", negative)):
                 result[key].extend({"noi_dung": clause, "nguon": [review_id]} for clause in clauses[:2])
     return result

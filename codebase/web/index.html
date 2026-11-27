@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Soi Review · Phân tích đánh giá sản phẩm</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/demo.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="brand"><span class="brand-mark" aria-hidden="true"></span>Soi Review</div>
+      <span class="team">Tứ kỵ sỹ khải huyền</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="intro">
+      <h1>Phân tích review<br class="desktop-break"> sản phẩm công nghệ</h1>
+      <p>Xem review nào đáng lưu ý, ưu nhược điểm có căn cứ và điểm sao sau lọc.</p>
+    </div>
+
+    <div class="workspace">
+      <section class="card input-card" aria-labelledby="input-title">
+        <div class="card-heading">
+          <h2 id="input-title">Review đầu vào</h2>
+          <button id="load-example" class="button button-secondary" type="button">Dùng ví dụ</button>
+        </div>
+
+        <div class="input-modes" role="group" aria-label="Cách nhập review">
+          <button id="paste-mode" class="button mode-button" type="button" aria-pressed="true" aria-controls="paste-fields">Dán nội dung</button>
+          <button id="manual-mode" class="button mode-button" type="button" aria-pressed="false" aria-controls="manual-fields">Nhập từng review</button>
+        </div>
+
+        <form id="review-form">
+          <div id="paste-fields">
+            <label for="review-input">Bộ review hoặc câu hỏi</label>
+            <textarea id="review-input" rows="7" aria-describedby="input-help"
+              placeholder="Sản phẩm: Tai nghe X&#10;[5] Pin dùng được 2 ngày&#10;[1] Tai trái mất tiếng"></textarea>
+            <p id="input-help" class="hint">Mỗi review một dòng hoặc cách nhau bằng <code>||</code>. Ghi <code>[1]</code>–<code>[5]</code> hoặc <code>[?]</code> trước review. Nhấn <kbd>Enter</kbd> để tách, <kbd>Shift+Enter</kbd> để xuống dòng.</p>
+            <button id="split-reviews" class="button button-secondary split-button" type="button">Tách thành từng review</button>
+          </div>
+
+          <div id="manual-fields" hidden>
+            <label for="product-name">Tên sản phẩm <span class="optional">(không bắt buộc)</span></label>
+            <input id="product-name" type="text" placeholder="Ví dụ: Tai nghe X">
+            <div id="review-fields" class="review-fields"></div>
+            <button id="add-review" class="button add-review" type="button">
+              <span aria-hidden="true">+</span> Thêm review
+            </button>
+            <p id="review-count" class="hint review-count"></p>
+          </div>
+
+          <template id="review-row">
+            <fieldset class="review-field">
+              <legend></legend>
+              <div class="review-field-grid">
+                <label>Nội dung
+                  <textarea rows="2" placeholder="Nhập nội dung review"></textarea>
+                </label>
+                <label>Số sao
+                  <select>
+                    <option value="?">Chưa rõ</option>
+                    <option value="1">1 sao</option>
+                    <option value="2">2 sao</option>
+                    <option value="3">3 sao</option>
+                    <option value="4">4 sao</option>
+                    <option value="5">5 sao</option>
+                  </select>
+                </label>
+              </div>
+              <button class="button remove-review" type="button">Xóa</button>
+            </fieldset>
+          </template>
+
+          <button id="submit-review" class="button button-primary" type="submit">Phân tích review</button>
+          <p id="form-status" class="status" role="status"></p>
+        </form>
+      </section>
+
+      <section class="card result-card" aria-labelledby="result-title">
+        <div class="card-heading">
+          <h2 id="result-title">Kết quả phân tích</h2>
+          <button id="copy-result" class="button button-secondary" type="button" hidden>Sao chép</button>
+        </div>
+
+        <div id="result-body" aria-busy="false">
+          <div id="empty-result" class="empty-result">
+            <div class="empty-icon" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+            <h3 id="empty-title">Chưa có kết quả</h3>
+            <p id="empty-message">Dán review hoặc dùng ví dụ để bắt đầu.</p>
+          </div>
+          <div id="analysis-result" hidden></div>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

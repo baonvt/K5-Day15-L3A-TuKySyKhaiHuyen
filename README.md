@@ -18,7 +18,7 @@
 
 > Đạt khi ≥ 70% câu qua (cột `pass`), và 100% câu `tu_choi` qua, không câu nào khẳng định một review là giả hoặc kết luận người bán lừa đảo
 
-**Demo CP2.** Chạy `python run.py`, rồi dán dòng sau.
+**Ví dụ demo.** Chạy `python run.py`, mở địa chỉ web hiện trong terminal rồi dán dòng sau hoặc chọn **Dùng ví dụ**.
 
 ```text
 Sản phẩm: Tai nghe X || [5] Pin dùng được 2 ngày || [5] Shop uy tín, mua ngay nhé || [1] Tai trái mất tiếng sau 3 ngày
@@ -61,20 +61,23 @@ Phần đã làm đến CP2 gồm bản chạy thử với model giả, nghiên 
 
 ## Chạy trong 3 phút
 
-Cần Python 3.10 trở lên; bộ khung chưa cần cài thư viện ngoài. Mở terminal tại thư mục có `run.py`, rồi chạy:
+Cần Python 3.10 trở lên. Mở terminal tại thư mục có `run.py`, rồi chạy:
 
 ```powershell
 python run.py
-python run.py check
 ```
 
-`python run.py` chạy luồng phân tích review. Với 14 câu hiện tại, lệnh `check` nhắc mở rộng lên 20–30 câu ở CP3.
+Demo chạy tại [127.0.0.1:8765](http://127.0.0.1:8765). Nếu trình duyệt chưa tự mở, mở địa chỉ đó trong lúc terminal vẫn đang chạy. Nhấn **Ctrl+C** trong terminal để dừng.
+
+Trong **Dán nội dung**, bấm **Phân tích review** để gửi ngay hoặc nhấn **Enter** để tách bộ review sang các ô riêng. Dùng **Shift+Enter** để xuống dòng. Trong **Nhập từng review**, nhập tên sản phẩm nếu có, nhập nội dung, chọn số sao và bấm **+ Thêm review** nếu cần.
+
+Để thử bằng model thật, điền `MODEL_PROVIDER=openrouter`, `MODEL_NAME` và `API_KEY` trong `.env`. Khi dùng chế độ `fake`, giao diện vẫn hiển thị kết quả mô phỏng.
 
 ## Lệnh
 
 | Lệnh | Mục đích |
 |---|---|
-| `python run.py` | Chạy bản thử dòng lệnh; phân tích review bằng AI giả ở CP2 |
+| `python run.py` | Mở giao diện web local để phân tích review |
 | `python run.py check` | Kiểm định dạng `TEAMS.md`, bộ câu thử và metric |
 | `python run.py eval --try` | Thử nối model khi triển khai CP2/CP3 |
 | `python run.py eval` | Chạy bộ câu thử; AI giả không được tính là một lượt đánh giá thật |
@@ -86,12 +89,13 @@ python run.py check
 
 | File | Nội dung |
 |---|---|
+| `codebase/app.py`, `codebase/web/` | Máy chủ local và giao diện demo gọi luồng phân tích review |
 | `codebase/agent.py` | Tách input, kiểm nhãn và nguồn, tổng hợp kết quả và tính sao |
 | `codebase/tools.py` | Ví dụ của starter; luồng CP2 đọc trực tiếp các review trong input |
-| `codebase/ai.py` | Chỗ gọi model; hiện dùng chế độ giả mặc định |
+| `codebase/ai.py` | Gọi OpenRouter theo cấu hình `.env` hoặc chạy chế độ giả |
 | `run.py`, `codebase/tracing.py`, `eval/run_eval.py`, `cost/simulate.py` | Giữ nguyên bộ khung BTC cấp |
 
-Nối model thật ở checkpoint sau theo [docs/connect-model.md](docs/connect-model.md). Không đưa API key vào repo.
+Hướng dẫn cấu hình model trong [docs/connect-model.md](docs/connect-model.md). Giữ API key ở `.env` trên máy.
 
 ## Phần nào thật, phần nào giả
 
@@ -100,8 +104,8 @@ Nối model thật ở checkpoint sau theo [docs/connect-model.md](docs/connect-
 | Tên, mã học viên, lớp, track, đội trưởng | Thông tin do nhóm cung cấp |
 | Tài liệu công khai và 5 trích dẫn | Đã tìm và ghi nguồn tại [evidence/public-sources.md](evidence/public-sources.md) |
 | Phỏng vấn, khảo sát, mẫu review nhóm tự thu | Chưa có |
-| Giải pháp review chạy được | Đã chạy luồng CP2 trên dòng lệnh |
-| Model trong bộ khung | AI giả; chưa gọi model thật |
+| Giải pháp review chạy được | Giao diện demo web trên máy local |
+| Model trong bộ khung | OpenRouter khi có cấu hình, mô phỏng ở chế độ `fake` |
 | Hiệu quả của model thật và precision/recall/F1 | Chưa đo; không có kết quả để báo cáo |
 
 ## Dùng AI vào việc gì
@@ -127,7 +131,7 @@ Codex hỗ trợ đọc đề, chuẩn bị cấu trúc repo, ghi hồ sơ từ 
 | Bằng chứng pain | `evidence/` | Có tài liệu công khai; chưa có phép đếm pain của nhóm |
 | Impact có số | `spec.md` §2 | Chưa làm |
 | Thiết kế giải pháp | `spec.md` §4 | Có sơ đồ và mô tả luồng CP2 |
-| Bản chạy thử làm trọn lát cắt | `codebase/` | Chạy bằng AI giả ở CP2 |
+| Bản chạy thử làm trọn lát cắt | `codebase/` | Demo web gọi cùng luồng `answer()` với bộ eval |
 | Bộ câu thử, metric và đánh giá | `data/`, `eval/` | Đã có benchmark CP2 và chấm chéo |
 | Mô phỏng chi phí | `cost/` | Chưa làm |
 | Slide, demo, video | `slides/`, PDF và link video khi có | Chưa làm |
