@@ -6,16 +6,19 @@
 
 **Thành viên và mã học viên:** [TEAMS.md](TEAMS.md). Đội trưởng: **Nguyễn Võ Thái Bảo — 2A202603638**; dùng cùng mã này khi nộp các checkpoint.
 
-## CP3 — Bàn giao trước 10:00 thứ Bảy 28/11
+## CP3 — Nội dung nộp
 
-| Ai phụ trách | Đã có trên repo | Còn cần trước khi nộp |
-|---|---|---|
-| Sơn — bằng chứng | 8 bài người mua, từng bài đều có trích dẫn và đường dẫn. 6/8 bài kể khó khăn khi đọc review, riêng phần tiếng Việt là 2/4. [Bảng gốc](evidence/data-mining.md) · [Tóm tắt](evidence/summary.md) | Khi điền form, ghi rõ đơn vị đếm là bài đăng. |
-| Phong — bản chạy và demo | Code đã nối OpenRouter, đọc token từ API và kiểm tra nguồn của từng ý. [Code gọi model](codebase/ai.py) | Chạy bằng model thật, kiểm tra B13 (yêu cầu viết review hộ) và gửi video 30 giây có thể mở khi đăng xuất. |
-| Hiệp — benchmark và chấm | 14 câu, gồm 8 câu khó và 2 câu từ chối. Đã cập nhật metric để áp dụng khi thêm câu. [Bộ câu thử](eval/benchmark.csv) | Thêm ít nhất 6 câu, chạy bộ hoàn chỉnh bằng model thật cùng Phong, chấm cột `pass` và gửi x/N, run ID cùng trace. |
-| Bảo — hồ sơ và nộp | Đã tổng hợp bằng chứng, so sánh 3 hướng và cập nhật thiết kế theo code. §2 ghi được một trường hợp phải đăng hỏi thêm, còn thiếu số phút đọc review mỗi tháng của người mua Việt Nam. [Spec §0–§7](spec.md) | Điền kết quả lượt 1 vào §7, mở thử link video ở cửa sổ ẩn danh rồi nộp form. |
+| Mục trong form | Nội dung của nhóm |
+|---|---|
+| Bằng chứng | 6/8 bài đăng công khai kể rằng người mua gặp khó khi dùng review để chọn laptop hoặc tai nghe. Riêng phần tiếng Việt có 2/4 bài. Cả 8 bài đều có trích dẫn, đường dẫn và lý do xếp loại. [Tóm tắt](evidence/summary.md) · [Từng bài gốc](evidence/data-mining.md) |
+| Bộ câu thử | 24 câu gồm 8 câu thường, 12 câu khó và 4 câu từ chối. 18 câu dùng review từ ViSpamReviews v2. [Benchmark](eval/benchmark.csv) · [Nguồn dữ liệu](data/DATA_CARD.md) |
+| Demo | Video 30 giây ghi lại một lượt phân tích tai nghe bằng `openai/gpt-4o-mini` qua OpenRouter. Điểm gốc 3,7 từ ba review, còn 3,0 khi giữ lại hai review. Cuối video là kết quả chấm lượt 1. [Tải MP4](demo-cp3.mp4) |
+| Kết quả lượt 1 | **8/24 câu đạt (33%)**. Câu thường 2/8, câu khó 3/12, câu từ chối 3/4. Run ID `run-1@20261127-192447`. Lượt 1 chưa đạt chuẩn §7. [CSV đã chấm](eval/run-1.csv) · [Trace](traces/run-1.jsonl) · [Báo cáo](eval/report.md) |
+| Spec | §0–§7 ghi bằng chứng, so sánh ba hướng, kiến trúc, cách đọc đầu ra và chuẩn đạt đã chốt ở CP2. [Đọc spec](spec.md) |
 
-**Chạy demo với model thật.** Đặt `MODEL_PROVIDER=openrouter`, `MODEL_NAME` và `API_KEY` trong file `.env` ở thư mục chứa `run.py`. Chọn model hỗ trợ JSON Schema rồi chạy `python run.py`. Để chạy cả bộ câu thử, dùng `python run.py eval`. Sau khi chấm từng câu, dùng `python run.py score eval/run-1.csv`. Trạng thái trong bảng trên chỉ dựa trên các file đã có trong repo.
+**Trước khi gửi form.** Nhóm cần link video YouTube không công khai hoặc Google Drive cho phép bất kỳ ai có link xem được. Theo hồ sơ chấm, Hiệp còn cần xác nhận phần chấm tay M3 và M4. §2 đã ghi một trường hợp phải hỏi thêm, số phút người mua Việt Nam dành để đọc review mỗi tháng vẫn chưa đo.
+
+**Chạy lại demo.** Điền `MODEL_PROVIDER=openrouter`, `MODEL_NAME=openai/gpt-4o-mini` và khóa riêng vào file `.env` cạnh `run.py`. Chạy `python run.py` rồi dán ví dụ tai nghe ở mục CP2. Có thể kiểm lại hồ sơ bằng `python run.py check` và `python run.py score eval/run-1.csv`.
 
 ## CP2 — Nội dung nộp form
 
@@ -79,7 +82,7 @@ python run.py
 python run.py check
 ```
 
-`python run.py` chạy luồng phân tích review. Với 14 câu hiện tại, lệnh `check` nhắc mở rộng lên 20–30 câu ở CP3.
+`python run.py` chạy luồng phân tích review. Bộ câu thử CP3 có 24 câu và đã qua lệnh `check`.
 
 ## Lệnh
 
@@ -111,9 +114,9 @@ Bản CP3 đã có code cho OpenRouter. Xem cấu hình thực tế ở mục CP
 | Tên, mã học viên, lớp, track, đội trưởng | Thông tin do nhóm cung cấp |
 | Tài liệu công khai và 5 trích dẫn | Đã tìm và ghi nguồn tại [evidence/public-sources.md](evidence/public-sources.md) |
 | Phỏng vấn, khảo sát, mẫu review nhóm tự thu | Chưa có |
-| Giải pháp review chạy được | Đã chạy luồng CP2 trên dòng lệnh |
-| Model trong bộ khung | Mặc định là bản giả. Đã có code gọi OpenRouter, đang chờ trace chạy thật |
-| Hiệu quả của model thật và precision/recall/F1 | Chưa đo; không có kết quả để báo cáo |
+| Giải pháp review chạy được | Đã chạy cả demo giả CP2 và demo thật CP3 trên dòng lệnh |
+| Model trong bộ khung | Dùng OpenRouter khi cấu hình khóa. Lượt 1 có trace với model và số token theo từng câu |
+| Hiệu quả của model thật và precision/recall/F1 | Lượt 1 đạt 8/24 theo metric đã chốt. Chưa đo precision, recall và F1 |
 
 ## Dùng AI vào việc gì
 
@@ -126,8 +129,8 @@ Codex hỗ trợ đọc đề, chuẩn bị cấu trúc repo, ghi hồ sơ từ 
 | [TEAMS.md](TEAMS.md), [canvas.md](canvas.md), README này | Hồ sơ CP1 đã hoàn thiện; phân công đã được nhóm xác nhận |
 | [evidence/hypothesis.md](evidence/hypothesis.md), [evidence/summary.md](evidence/summary.md) | Bằng chứng đang phát triển, đủ ngưỡng trước CP3 |
 | [spec.md](spec.md) | Thiết kế và chuẩn đạt ở CP2; các mục còn lại theo checkpoint |
-| [data/DATA_CARD.md](data/DATA_CARD.md), [eval/benchmark.csv](eval/benchmark.csv), [eval/metric_spec.yaml](eval/metric_spec.yaml) | Bản CP2 gồm Data Card, 14 câu thử và 4 metric |
-| [eval/README.md](eval/README.md), [eval/report.md](eval/report.md) | Hồ sơ và kết quả đánh giá ở giai đoạn sau |
+| [data/DATA_CARD.md](data/DATA_CARD.md), [eval/benchmark.csv](eval/benchmark.csv), [eval/metric_spec.yaml](eval/metric_spec.yaml) | Bản CP3 có Data Card, 24 câu thử và 4 metric |
+| [eval/README.md](eval/README.md), [eval/report.md](eval/report.md) | Hồ sơ và kết quả đánh giá lượt 1 |
 | [cost/personas.yaml](cost/personas.yaml), [cost/cost-estimate.md](cost/cost-estimate.md) | Mô phỏng chi phí ở giai đoạn sau |
 | [slides/outline.md](slides/outline.md), [reflection/TEMPLATE.md](reflection/TEMPLATE.md) | Slide và reflection ở giai đoạn sau |
 
@@ -138,7 +141,7 @@ Codex hỗ trợ đọc đề, chuẩn bị cấu trúc repo, ghi hồ sơ từ 
 | Bằng chứng pain | `evidence/` | 6/8 bài công khai nêu khó khăn, gồm 2/4 bài tiếng Việt |
 | Impact có số | `spec.md` §2 | Đã so ba hướng và đếm một lần phải hỏi thêm ở trường hợp D01. Số phút mỗi tháng chưa đo |
 | Thiết kế giải pháp | `spec.md` §4 | Có sơ đồ và mô tả luồng CP2 |
-| Bản chạy thử làm trọn lát cắt | `codebase/` | Demo chạy được bằng model giả, code OpenRouter chờ kiểm bằng lượt thật |
-| Bộ câu thử, metric và đánh giá | `data/`, `eval/` | Đã có benchmark CP2 và chấm chéo |
+| Bản chạy thử làm trọn lát cắt | `codebase/` | Demo CP3 chạy thật bằng OpenRouter |
+| Bộ câu thử, metric và đánh giá | `data/`, `eval/` | 24 câu ở CP3, lượt 1 đạt 8/24 |
 | Mô phỏng chi phí | `cost/` | Chưa làm |
-| Slide, demo, video | `slides/`, PDF và link video khi có | Chưa làm |
+| Slide, demo, video | [Video CP3](demo-cp3.mp4) và `slides/` | Đã có MP4 cho CP3. Slide và PDF thuộc mốc sau |

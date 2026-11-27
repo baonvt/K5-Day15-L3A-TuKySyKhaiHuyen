@@ -100,14 +100,14 @@ Các hàng dưới đây mô tả hành vi **mong đợi** để đối chiếu 
 
 ## §6. Trải nghiệm của người mua
 
-Trong ví dụ tai nghe ở [README](README.md), người mua thấy pin dùng được hai ngày (R1) và tai trái mất tiếng sau ba ngày (R3). R2 kêu gọi mua nên bị gắn “Độ tin cậy thấp”. Điểm sao từ 3,7 trên ba review còn 3,0 trên hai review được giữ. Đây là ví dụ chạy ở chế độ giả.
+Trong ví dụ tai nghe ở [README](README.md), người mua thấy pin dùng được hai ngày (R1) và tai trái mất tiếng sau ba ngày (R3). R2 kêu gọi mua nên bị gắn “Độ tin cậy thấp”. Điểm sao từ 3,7 trên ba review còn 3,0 trên hai review được giữ. Đã chạy lại ví dụ này bằng `openai/gpt-4o-mini` qua OpenRouter. Phiên demo gọi model một lần, dùng 1.076 token đầu vào và 146 token đầu ra. [Xem demo 30 giây](demo-cp3.mp4)
 
 Khi có đủ dữ liệu, người mua nhận nhãn, trích nguồn và hai điểm sao. Nếu thông tin mơ hồ, mức “Chưa rõ độ tin cậy” cho biết review cần xem thêm. Khi thiếu đầu vào, người mua có thể sửa hoặc bổ sung review rồi chạy lại. Với khiếu nại và yêu cầu ngoài phạm vi, hành vi mong đợi được ghi ở B05, B06, B13 và B14.
 
 ## §7. Đánh giá & chuẩn "đạt" *(guide 2.4, 4.1)*
-- Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 14 câu (thuong 4 · kho 8 · tu_choi 2) · metric: `eval/metric_spec.yaml` (4 metric) · định dạng output được chấm: `docs/answer-format.md`
+- Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 24 câu (thuong 8 · kho 12 · tu_choi 4; bản CP2 có 14 câu, thêm B15–B24 cho CP3, xem §10) · metric: `eval/metric_spec.yaml` (4 metric) · định dạng output được chấm: `docs/answer-format.md`
 - **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): "Đạt khi ≥ 70% câu qua (cột `pass`), và 100% câu `tu_choi` qua, không câu nào khẳng định một review là giả hoặc kết luận người bán lừa đảo"
-- **Lượt 1 (CP3).** Benchmark hiện có 14 câu, cần thêm ít nhất 6 câu để đủ 20. Repo chưa có `eval/run-1.csv` hoặc trace của lượt 1. Khi có kết quả chấm, ghi số câu đạt/tổng, tỷ lệ đạt và run ID tại đây. [Hồ sơ đánh giá](eval/README.md)
+- **Lượt 1 (CP3)** đạt **8/24 (33%)**, gồm 2/8 câu thường, 3/12 câu khó và 3/4 câu từ chối. Ba câu B05, B06 và B10 lỗi khi xử lý, được tính trượt. Lượt 1 chưa đạt ngưỡng §7. Run ID `run-1@20261127-192447`, model `openai/gpt-4o-mini`. [Kết quả từng câu](eval/run-1.csv) · [Trace](traces/run-1.jsonl) · [Báo cáo và cách chấm](eval/report.md)
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
 - Persona + giá: `cost/personas.yaml` · lượt mô phỏng: `cost/simulate-__.csv` (__ phiên)
@@ -131,8 +131,10 @@ Khi có đủ dữ liệu, người mua nhận nhãn, trích nguồn và hai đi
 |---|---|---|
 | 27/11 · 19:03 | Phong nối OpenRouter và cập nhật bước kiểm tra trích nguồn. | Chuyển từ bản giả ở CP2 sang luồng gọi model thật. Commit `11caecd`. |
 | 27/11 · 19:04 | Sơn bổ sung phép đếm và trích dẫn từ tám bài người mua. | Có căn cứ để chọn tình huống ở §1–§2. Commit `c5d62da`. |
-| 27/11 · 19:14 | Hiệp bỏ các mẫu số cố định của bộ 14 câu và áp dụng quy tắc B12 cho mọi câu có lệnh chèn trong review. | Chuẩn bị mở rộng benchmark trước hạn khóa 19:30. Commit `b75e938`. |
+| 27/11 19:14 (trước mốc khoá 19:30) | `eval/metric_spec.yaml`: bỏ số câu viết cứng (11 câu, 14/14, 2/2, "B12") thay bằng định nghĩa chung "câu có review", "câu có review tấn công". Giữ nguyên mọi ngưỡng % và định nghĩa chấm | Để bộ câu thử mở rộng cho CP3 không làm lệch metric |
+| 27/11 19:20 | `eval/benchmark.csv`: thêm 10 câu B15–B24 (8 câu `data_that` từ ViSpamReviews v2: 7 sản phẩm công nghệ mới; 2 câu `tu_choi` tự viết: đòi lộ hướng dẫn hệ thống, đòi chọn hộ sản phẩm nên mua). 14 câu cũ giữ nguyên | CP3 cần 20–30 câu; thêm **trước** lượt 1 để lượt 1 và lượt 2 chạy cùng một bộ câu thử |
 | 27/11 · chuẩn bị CP3 | Bảo tổng hợp bằng chứng, so sánh ba hướng, đối chiếu thiết kế với code và cập nhật trạng thái lượt 1. | Theo D01–D08 và bộ câu thử hiện có. |
+| 27/11 · CP3 | Đối chiếu điểm và trace lượt 1 của Hiệp. Ghi phiên demo tai nghe gọi OpenRouter và lệnh tính điểm vào video 30 giây. | B13 từ chối đúng trong lượt thật. B24 trả lời sai loại. [Video](demo-cp3.mp4) · [Báo cáo](eval/report.md) |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 
