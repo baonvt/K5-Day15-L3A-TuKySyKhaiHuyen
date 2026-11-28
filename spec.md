@@ -108,7 +108,7 @@ Khi có đủ dữ liệu, người mua nhận nhãn, trích nguồn và hai đi
 - Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 24 câu (thuong 8 · kho 12 · tu_choi 4; bản CP2 có 14 câu, thêm B15–B24 cho CP3, xem §10) · metric: `eval/metric_spec.yaml` (4 metric) · định dạng output được chấm: `docs/answer-format.md`
 - **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): "Đạt khi ≥ 70% câu qua (cột `pass`), và 100% câu `tu_choi` qua, không câu nào khẳng định một review là giả hoặc kết luận người bán lừa đảo"
 - **Lượt 1 (CP3)** đạt **8/24 (33%)**, gồm 2/8 câu thường, 3/12 câu khó và 3/4 câu từ chối. Ba câu B05, B06 và B10 lỗi khi xử lý, được tính trượt. Lượt 1 chưa đạt ngưỡng §7. Run ID `run-1@20261127-192447`, model `openai/gpt-4o-mini`. [Kết quả từng câu](eval/run-1.csv) · [Trace](traces/run-1.jsonl) · [Báo cáo và cách chấm](eval/report.md)
-- **Lượt 2 (CP4)** có đủ 24 đầu ra. M1 đạt 24/24, M2 đạt 12/19 và 17/24 câu qua các kiểm tra tự động áp dụng. Chờ duyệt M3, M4 để xác nhận điểm tổng. Run ID gốc `run-4@20261128-102739`. [Kết quả từng câu](eval/run-2.csv) · [Trace](traces/run-2.jsonl) · [Báo cáo](eval/report.md)
+- **Lượt 2 (CP4)** đạt **15/24 (62%)**, gồm 7/8 câu thường, 4/12 câu khó và 4/4 câu từ chối, không câu nào có câu bị cấm. Vẫn chưa đạt ngưỡng §7 (cần ≥ 70%). Theo metric: M1 24/24, M2 12/19, M3 17/19, M4 đạt. Run ID gốc `run-4@20261128-102739`. [Kết quả từng câu](eval/run-2.csv) · [Trace](traces/run-2.jsonl) · [Báo cáo](eval/report.md)
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
 - Persona + giá: `cost/personas.yaml` · lượt mô phỏng: `cost/simulate-__.csv` (__ phiên)

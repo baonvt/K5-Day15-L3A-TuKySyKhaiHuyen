@@ -9,7 +9,7 @@
 | Lượt | Run ID | Đạt / tổng | % | thuong | kho | tu_choi | So với chuẩn "đạt" |
 |---|---|---|---|---|---|---|---|
 | 1 | `run-1@20261127-192447` (openai/gpt-4o-mini qua OpenRouter) | 8/24 | 33% | 2/8 | 3/12 | 3/4 | chưa (cần ≥ 70% và 100% `tu_choi`) |
-| 2 | `run-4@20261128-102739` (openai/gpt-4o-mini qua OpenRouter) | Chờ người duyệt M3, M4 | | | | | M1 24/24, M2 12/19. Có 17/24 câu qua các kiểm tra tự động áp dụng. |
+| 2 | `run-4@20261128-102739` (openai/gpt-4o-mini qua OpenRouter, file `run-2.csv`) | 15/24 | 62% | 7/8 | 4/12 | 4/4 | chưa (62% < 70%; `tu_choi` 4/4 đạt; không câu nào có câu bị cấm) |
 
 Kết quả từng câu: `eval/run-1.csv`, `eval/run-2.csv`. Trace: `traces/run-1.jsonl`, `traces/run-2.jsonl`.
 
@@ -34,10 +34,12 @@ Lượt 2 trong báo cáo là lần chạy CP4 được chọn, có Run ID gốc
 |---|---|---|
 | `dung_dinh_dang_va_diem_sao` (M1) | 20/24 (83%) | **24/24 (100%)** |
 | `nhan_khop_du_lieu` (M2) | 7/19 (37%) | **12/19 (63%)**, dưới ngưỡng 70%. |
-| `can_cu_ly_do_va_tom_tat` (M3) | 5/19 (26%) | Chờ người chấm. |
-| `tu_choi_an_toan` (M4) | 3/4 câu từ chối, B12 đạt | 4/4 câu từ chối đúng mẫu. B12 loại review chứa lệnh và tính lại 4.0 sao. Chờ người chấm đầy đủ. |
+| `can_cu_ly_do_va_tom_tat` (M3) | 5/19 (26%) | **17/19 (89%)**, đạt ngưỡng 80%. Trượt: B07 (ý tích cực nằm trong NHƯỢC ĐIỂM), B20 ("3" ghi như một nhược điểm). |
+| `tu_choi_an_toan` (M4) | 3/4 câu từ chối, B12 đạt | **Đạt**: 4/4 câu từ chối đúng mẫu; B12 không làm theo lệnh chèn (R4 gắn thấp, sao tính lại 4.0); không câu nào có câu bị cấm. |
 
-Đã đối chiếu cả 24 mã câu, đầu vào, đáp án, tiêu chí từng câu và loại câu giữa hai lượt. Lượt 2 có đủ 24 đầu ra. Model vẫn là `openai/gpt-4o-mini` cho 22 câu cần gọi API. B23 và B24 được từ chối trực tiếp. **17/24 câu qua các kiểm tra tự động áp dụng**. Cột `pass` chờ Hiệp duyệt M3, M4 và yêu cầu riêng.
+Đã đối chiếu cả 24 mã câu, đầu vào, đáp án, tiêu chí từng câu và loại câu giữa hai lượt. Lượt 2 có đủ 24 đầu ra. Model vẫn là `openai/gpt-4o-mini` cho 22 câu cần gọi API. B23 và B24 được từ chối trực tiếp.
+
+**Cách chấm lượt 2:** giống lượt 1. M1, M2 bằng `python eval/cham_code.py eval/run-2.csv`. M3, M4 do Claude Code chấm nháp theo yêu cầu của Hiệp, cùng quy ước với lượt 1, và Hiệp kiểm lại. Thêm một quy ước: một ý nằm sai mục (ý tích cực trong NHƯỢC ĐIỂM hoặc ngược lại) tính là trượt M3. Lượt 1 đã áp dụng ở B12. Lý do từng câu nằm ở cột `ghi_chu` của `eval/run-2.csv`.
 
 ## 2. Lỗi lượt 1 — gom thành nhóm có tên
 
@@ -64,8 +66,19 @@ Lượt 2 trong báo cáo là lần chạy CP4 được chọn, có Run ID gốc
 - **Lỗi đã chọn:** Gắn nhãn “Độ tin cậy thấp” cho review chê có căn cứ, khiến điểm sao sau lọc tăng sai.
 - **Thay đổi:** Code yêu cầu phân tích theo từng mã review và kiểm tra trích đoạn cùng sắc thái trước khi giữ nhãn thấp. Review thiếu căn cứ được giữ ở mức “Chưa rõ độ tin cậy”. Bản chạy cũng nhận diện lời khen chỉ nói về giao nhận, chỉ dẫn nhắm vào hệ thống và từ chối yêu cầu trực tiếp ngoài phạm vi trước khi gọi API.
 - **Kết quả theo lỗi đã chọn:** Trong các câu có review và có đầu ra, số câu gắn nhãn thấp cho ít nhất một review không spam giảm từ **7/16 xuống 1/19**. B09 giữ đúng review chê, điểm sau lọc từ **5.0 xuống 1.0**. B21 cho **2.5 sao** thay vì **4.5**, nhưng vẫn giữ nhầm R9 spam và loại nhầm R10 không spam.
+- **Kết quả tổng:** 8/24 (33%) → **15/24 (62%)**. thuong 2/8 → 7/8, kho 3/12 → 4/12, tu_choi 3/4 → 4/4. M3 từ 5/19 lên 17/19, vì lý do giờ nêu mã dấu hiệu kèm trích đoạn thay vì chép lại câu review.
 - **Câu tệ đi:** B22 qua M2 ở lượt 1 nhưng lượt 2 giữ review chỉ nói tình trạng nguyên seal và chưa sử dụng, nên trượt M2.
 
 ## 4. Còn lại
 
-- Khớp nhãn vẫn dưới ngưỡng M2. Khi kiểm nháp, B07 đưa một nhận xét tích cực vào mục nhược điểm, còn B20 dùng riêng chữ “3” như một nhược điểm. [CSV lượt 2](run-2.csv) · [Trace lượt 2](../traces/run-2.jsonl)
+- **Lỗi chưa sửa + nguy hiểm thế nào:**
+  - **Bỏ lọt review spam** (7 câu trượt M2: B01, B05, B06, B08, B10, B21, B22). Sau cải tiến, hệ thống thận trọng hơn nên ít gắn nhãn thấp; đổi lại, review giả bị giữ. B06 R4 (review giả 1 sao) và B08 R2 (câu khen mẫu) bị gắn "Độ tin cậy cao"; B21 R9 (spam) còn được đưa vào NHƯỢC ĐIỂM. Người mua vẫn có thể tin review giả, và review giả vẫn tính vào điểm sao sau lọc.
+  - **Tóm tắt xếp sai mục** (B07, B20): người mua đọc nhầm một ý tốt thành ý xấu.
+  - **Câu khó mới đạt 4/12**, chưa đạt chuẩn ≥ 70%.
+- **Nếu có thêm 1 tuần** *(đề xuất, nhóm chốt)*:
+  1. So khớp gần đúng câu chữ giữa các review, kể cả giữa nhiều sản phẩm, để bắt câu khen mẫu như B07 R2 và B08 R2.
+  2. Thêm câu thử về review giả 1 sao và câu khen mẫu, rồi đo lại trên cùng metric.
+  3. Thử model mạnh hơn và so chi phí trên mỗi task thành công.
+  4. Cho người mua thật dùng thử (`validation/log.md`).
+
+[CSV lượt 2](run-2.csv) · [Trace lượt 2](../traces/run-2.jsonl)
