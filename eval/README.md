@@ -50,12 +50,14 @@ Tạo lại các câu `data_that` từ dataset: `python data/chon_review.py <th�
 | Lượt | Run ID | Model | Cấu hình (prompt / công cụ / thay đổi) | Đạt / tổng | % | Đạt chuẩn? |
 |---|---|---|---|---|---|---|
 | 1 | `run-1@20261127-192447` | openai/gpt-4o-mini (OpenRouter) | Code commit `c5d62da` (workflow cố định: 1 lần gọi model trả JSON, code kiểm nhãn và tự tính sao) · bộ 24 câu · chạy trên máy Hiệp 27/11 19:24 | 8/24 | 33% | Chưa (cần ≥ 70% và 100% `tu_choi`; `tu_choi` 3/4) |
-| 2 | | | | __/__ | | |
+| 2 | `run-4@20261128-102739` | openai/gpt-4o-mini (OpenRouter) | Cùng bộ 24 câu. Kiểm chứng nhãn theo mã review, nhận diện chỉ dẫn trong review và lời khen giao nhận, xử lý từ chối rõ ràng trước khi gọi model. | Chờ M3, M4 | | M1 24/24, M2 12/19. 17/24 qua các kiểm tra tự động áp dụng. |
+
+Kết quả CP4 được lưu tại [run-2.csv](run-2.csv) và [run-2.jsonl](../traces/run-2.jsonl), với Run ID gốc ghi trong bảng.
 
 Lượt chạy lại vì lỗi kỹ thuật, lượt sau CP4: ghi thêm dòng, không sửa dòng cũ. Lượt 1 có 3 câu lỗi do chính luồng xử lý (B05, B06, B10), không chạy lại, chấm 0.
 
 ## 6. Lỗi chính
 
 - **Lớn nhất:** gắn "Độ tin cậy thấp" cho review chê thật (7 câu), làm điểm sao tính lại bị đẩy lên (B21: 2.9 → 4.5). Kèm theo: lý do chỉ chép lại câu review (9 câu, còn làm hỏng B05, B06), và bỏ lọt review spam khen chung chung (5 câu).
-- **Đã sửa gì:** chưa, đề xuất cho lượt 2 ở `eval/report.md` mục 3.
-- **Còn lại:** điền sau lượt 2.
+- **Đã sửa gì:** Các nhãn thấp cần trích đoạn gốc và vượt qua kiểm tra sắc thái khi xét khen chung hoặc lệch sao. So sánh hai lượt ở `eval/report.md` mục 3.
+- **Còn lại:** Hiệp duyệt M3, M4 và điền `pass` cho lượt 2. Lượt 2 có đủ đầu ra, còn lỗi phân loại và tóm tắt.

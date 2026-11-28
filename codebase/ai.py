@@ -47,6 +47,7 @@ MODEL_NAME = (os.environ.get("MODEL_NAME") or "").strip()
 API_KEY = (os.environ.get("API_KEY") or "").strip()
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 OPENROUTER_MAX_TOKENS = 4096
+REVIEW_SENTIMENTS = ("tich_cuc", "tieu_cuc", "lan_lon", "khong_ro")
 
 # Dấu hiệu quyết định nhãn và nội dung giải thích hiển thị.
 REVIEW_SIGNALS = {
@@ -70,29 +71,39 @@ SUMMARY_ITEM = {
     "required": ["noi_dung", "nguon"],
     "additionalProperties": False,
 }
-ANALYSIS_SCHEMA = {
+REVIEW_ITEM = {
     "type": "object",
     "properties": {
-        "quyet_dinh": {"type": "string", "enum": ["phan_tich", "tu_choi"]},
-        "nhan": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "ma": {"type": "string"},
-                    "dau_hieu": {"type": "string", "enum": list(REVIEW_SIGNALS)},
-                    "trich_dan": {"type": "string"},
-                },
-                "required": ["ma", "dau_hieu", "trich_dan"],
-                "additionalProperties": False,
-            },
-        },
-        "uu_diem": {"type": "array", "items": SUMMARY_ITEM},
-        "nhuoc_diem": {"type": "array", "items": SUMMARY_ITEM},
+        "sac_thai": {"type": "string", "enum": list(REVIEW_SENTIMENTS)},
+        "dau_hieu": {"type": "string", "enum": list(REVIEW_SIGNALS)},
+        "trich_dan": {"type": "string"},
     },
-    "required": ["quyet_dinh", "nhan", "uu_diem", "nhuoc_diem"],
+    "required": ["sac_thai", "dau_hieu", "trich_dan"],
     "additionalProperties": False,
 }
+
+
+def _analysis_schema(payload):
+    review_ids = [review["ma"] for review in payload["reviews"]]
+    decisions = ["phan_tich"]
+    if payload["loi_nguoi_dung"]:
+        decisions.append("tu_choi")
+    return {
+        "type": "object",
+        "properties": {
+            "quyet_dinh": {"type": "string", "enum": decisions},
+            "nhan": {
+                "type": "object",
+                "properties": dict.fromkeys(review_ids, REVIEW_ITEM),
+                "required": review_ids,
+                "additionalProperties": False,
+            },
+            "uu_diem": {"type": "array", "items": SUMMARY_ITEM},
+            "nhuoc_diem": {"type": "array", "items": SUMMARY_ITEM},
+        },
+        "required": ["quyet_dinh", "nhan", "uu_diem", "nhuoc_diem"],
+        "additionalProperties": False,
+    }
 
 
 OUT_OF_SCOPE = re.compile(
@@ -182,7 +193,7 @@ def _mock_analysis(payload):
     reviews = payload["reviews"]
     product_type = PRODUCT_TYPES.search(payload["san_pham"].casefold())
     normalized = [" ".join(re.findall(r"\w+", review["noi_dung"].casefold())) for review in reviews]
-    result = {"quyet_dinh": "phan_tich", "nhan": [], "uu_diem": [], "nhuoc_diem": []}
+    result = {"quyet_dinh": "phan_tich", "nhan": {}, "uu_diem": [], "nhuoc_diem": []}
     for index, review in enumerate(reviews):
         review_id = review["ma"]
         content = review["noi_dung"]
@@ -202,7 +213,15 @@ def _mock_analysis(payload):
             elif POSITIVE.search(clause):
                 positive.append(clause)
         signal, excerpt = _mock_signal(review, product_type, duplicate, positive, negative)
-        result["nhan"].append({"ma": review_id, "dau_hieu": signal, "trich_dan": excerpt})
+        if positive and negative:
+            sentiment = "lan_lon"
+        elif negative:
+            sentiment = "tieu_cuc"
+        elif positive or signal == "khen_chung_chung":
+            sentiment = "tich_cuc"
+        else:
+            sentiment = "khong_ro"
+        result["nhan"][review_id] = {"sac_thai": sentiment, "dau_hieu": signal, "trich_dan": excerpt}
         if REVIEW_SIGNALS[signal][0] != "thap":
             for key, clauses in (("uu_diem", positive), ("nhuoc_diem", negative)):
                 result[key].extend({"noi_dung": clause, "nguon": [review_id]} for clause in clauses[:2])
@@ -213,6 +232,7 @@ def _call_openrouter(system: str, user: str) -> dict:
     if not MODEL_NAME or not API_KEY:
         raise ValueError("OpenRouter cần MODEL_NAME và API_KEY trong .env.")
 
+    payload = json.loads(user)
     body = {
         "model": MODEL_NAME,
         "messages": [
@@ -221,10 +241,12 @@ def _call_openrouter(system: str, user: str) -> dict:
         ],
         "response_format": {
             "type": "json_schema",
-            "json_schema": {"name": "phan_tich_review", "strict": True, "schema": ANALYSIS_SCHEMA},
+            "json_schema": {
+                "name": "phan_tich_review", "strict": True, "schema": _analysis_schema(payload),
+            },
         },
         "provider": {"require_parameters": True},
-        "max_tokens": OPENROUTER_MAX_TOKENS,
+        "max_tokens": min(OPENROUTER_MAX_TOKENS, 512 + 110 * len(payload["reviews"])),
         "temperature": 0,
     }
     request = urllib.request.Request(

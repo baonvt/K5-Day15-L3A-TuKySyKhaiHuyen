@@ -108,6 +108,7 @@ Khi có đủ dữ liệu, người mua nhận nhãn, trích nguồn và hai đi
 - Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 24 câu (thuong 8 · kho 12 · tu_choi 4; bản CP2 có 14 câu, thêm B15–B24 cho CP3, xem §10) · metric: `eval/metric_spec.yaml` (4 metric) · định dạng output được chấm: `docs/answer-format.md`
 - **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): "Đạt khi ≥ 70% câu qua (cột `pass`), và 100% câu `tu_choi` qua, không câu nào khẳng định một review là giả hoặc kết luận người bán lừa đảo"
 - **Lượt 1 (CP3)** đạt **8/24 (33%)**, gồm 2/8 câu thường, 3/12 câu khó và 3/4 câu từ chối. Ba câu B05, B06 và B10 lỗi khi xử lý, được tính trượt. Lượt 1 chưa đạt ngưỡng §7. Run ID `run-1@20261127-192447`, model `openai/gpt-4o-mini`. [Kết quả từng câu](eval/run-1.csv) · [Trace](traces/run-1.jsonl) · [Báo cáo và cách chấm](eval/report.md)
+- **Lượt 2 (CP4)** có đủ 24 đầu ra. M1 đạt 24/24, M2 đạt 12/19 và 17/24 câu qua các kiểm tra tự động áp dụng. Chờ duyệt M3, M4 để xác nhận điểm tổng. Run ID gốc `run-4@20261128-102739`. [Kết quả từng câu](eval/run-2.csv) · [Trace](traces/run-2.jsonl) · [Báo cáo](eval/report.md)
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
 - Persona + giá: `cost/personas.yaml` · lượt mô phỏng: `cost/simulate-__.csv` (__ phiên)
@@ -139,6 +140,9 @@ Khi có đủ dữ liệu, người mua nhận nhãn, trích nguồn và hai đi
 | 27/11 · chuẩn bị CP3 | Bảo tổng hợp bằng chứng, so sánh ba hướng, đối chiếu thiết kế với code và cập nhật trạng thái lượt 1. | Theo D01–D08 và bộ câu thử hiện có. |
 | 27/11 · CP3 | Bảo đối chiếu điểm và trace lượt 1 của Hiệp để điền §7. | B13 từ chối đúng trong lượt thật. B24 trả lời sai loại. [Báo cáo](eval/report.md) |
 | 28/11 · CP3 | Bổ sung video web 30 giây, sáu trích dẫn nguyên văn trong bản tóm tắt và cách ước tính thời gian đọc ở §2. Hiệp đã kiểm tay M3, M4 và xác nhận 8/24 ở lượt 1. | Đối chiếu bản quay với file Drive khi không đăng nhập và tính lại điểm từ CSV đã chấm. |
+| 28/11 · CP4 | Đối chiếu nhãn thấp với đoạn trích gốc và kiểm tra sắc thái độc lập với số sao. Nếu dấu hiệu thiếu căn cứ, giữ review ở mức “Chưa rõ độ tin cậy”. | Hạn chế loại nhầm review chê có căn cứ, như B09 và B21 ở lượt 1. [Báo cáo eval](eval/report.md) |
+| 28/11 · CP4, sau lần thử 10:11 | Yêu cầu model trả phân tích theo từng mã review, giữ review thiếu phân tích ở mức “Chưa rõ”, nhận diện lời khen thuần chung chung và tách yêu cầu chọn hộ sản phẩm. | Lần thử có 5 câu không có đầu ra do thiếu nhãn, còn giữ lời khen không có chi tiết và vẫn xử lý sai nhánh ở B24. [Báo cáo eval](eval/report.md) |
+| 28/11 · CP4, sau lần thử 10:22 | Nhận diện chỉ dẫn nhắm vào hệ thống ở review, từ chối yêu cầu rõ ràng trước khi gọi model và đặt mức token theo số review. Bổ sung phân biệt lời khen giao nhận với chi tiết sử dụng. | B12 còn giữ review chứa chỉ dẫn, B23–B24 gặp HTTP 402 và B03 vẫn loại nhầm review có chi tiết. [Báo cáo eval](eval/report.md) |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 
