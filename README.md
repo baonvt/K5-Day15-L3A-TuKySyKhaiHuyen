@@ -6,6 +6,17 @@
 
 **Thành viên và mã học viên:** [TEAMS.md](TEAMS.md). Đội trưởng: **Nguyễn Võ Thái Bảo — 2A202603638**; dùng cùng mã này khi nộp các checkpoint.
 
+## CP4 — Nội dung nộp
+
+| Mục | Nội dung của nhóm |
+|---|---|
+| Phòng và repo | **H201 · lớp L3A · Track D** · [Repo nhóm](https://github.com/baonvt/K5-Day15-L3A-TuKySyKhaiHuyen) |
+| Bảy hạng mục | [Bảng kiểm và minh chứng](#minh-chung-cp4) |
+| Đánh giá | **8/24 → 15/24 (62,5%)** trên cùng bộ câu thử với `openai/gpt-4o-mini`. Lượt 2 đạt 4/4 câu từ chối, 4/12 câu khó. [Báo cáo](eval/report.md) |
+| Chi phí cơ sở | **0,001199 USD/task thành công** và **0,9041 USD/tháng cho 610 người** với `openai/gpt-4o-mini`. Mô phỏng 50 phiên, 50 phiên hợp lệ. Quy mô người dùng là giả định. [Chi phí và hai mức giá](cost/cost-estimate.md) |
+| Trình diễn | [Slide PDF](demo-slides.pdf) · [Video dự phòng trên Drive](https://drive.google.com/file/d/1LlJPt7M4MHb9uMjfhDdBzO4gn5gqm0f1/view?usp=sharing) · [Video MP4](demo-cp3-web.mp4) |
+| Giới hạn còn lại | Lượt 2 còn 9 câu trượt, dưới chuẩn 70%. Thời gian tiết kiệm thực tế và số người dùng/tháng cần được đo. [Lỗi còn lại](eval/report.md) |
+
 ## CP3 — Nội dung nộp
 
 | Mục trong form | Nội dung của nhóm |
@@ -98,8 +109,8 @@ Bộ câu thử CP3 có 24 câu và đã qua lệnh `check`.
 | `python run.py eval --try` | Thử nối model khi triển khai CP2/CP3 |
 | `python run.py eval` | Chạy bộ câu thử; AI giả không được tính là một lượt đánh giá thật |
 | `python run.py score eval/run-N.csv` | Tính tỷ lệ đạt sau khi nhóm chấm cột `pass` |
-| `python run.py simulate --try` | Thử mô phỏng chi phí ở giai đoạn sau |
-| `python run.py simulate` | Chạy mô phỏng chi phí ở giai đoạn sau |
+| `python run.py simulate --try` | Thử 10 phiên để kiểm tra cấu hình |
+| `python run.py simulate` | Chạy 50 phiên thật theo cấu hình CP4 |
 
 ## Bản chạy thử — viết ở đâu
 
@@ -122,32 +133,34 @@ Hướng dẫn cấu hình model trong [docs/connect-model.md](docs/connect-mode
 | Phỏng vấn, khảo sát, mẫu review nhóm tự thu | Chưa có |
 | Giải pháp review chạy được | Giao diện demo web trên máy local |
 | Model trong bộ khung | Dùng OpenRouter khi cấu hình khóa. Lượt 1 có trace với model và số token theo từng câu |
-| Hiệu quả của model thật và precision/recall/F1 | Lượt 1 đạt 8/24 theo metric đã chốt. Chưa đo precision, recall và F1 |
+| Hiệu quả của model thật và precision/recall/F1 | Lượt 1 đạt 8/24, lượt 2 đạt 15/24 theo metric đã chốt. Chưa đo precision, recall và F1 |
 
 ## Dùng AI vào việc gì
 
 Codex hỗ trợ đọc đề, chuẩn bị cấu trúc repo, ghi hồ sơ từ thông tin nhóm cung cấp và tìm nguồn công khai. Đến CP3, bảng bằng chứng đã có tám bài đăng kèm trích dẫn để kiểm lại. Chi tiết ở [docs/ai-usage.md](docs/ai-usage.md); quy ước cho coding agent ở [AGENTS.md](AGENTS.md).
 
-## File mẫu — điền ở bước nào
+## Hồ sơ theo checkpoint
 
 | File | Mốc |
 |---|---|
 | [TEAMS.md](TEAMS.md), [canvas.md](canvas.md), README này | Hồ sơ CP1 đã hoàn thiện; phân công đã được nhóm xác nhận |
-| [evidence/hypothesis.md](evidence/hypothesis.md), [evidence/summary.md](evidence/summary.md) | Bằng chứng đang phát triển, đủ ngưỡng trước CP3 |
-| [spec.md](spec.md) | Thiết kế và chuẩn đạt ở CP2; các mục còn lại theo checkpoint |
+| [evidence/hypothesis.md](evidence/hypothesis.md), [evidence/summary.md](evidence/summary.md) | 8 bài đăng công khai và bảng đếm 6/8 |
+| [spec.md](spec.md) | Thiết kế, chuẩn đạt đã chốt, kết quả CP4 và changelog |
 | [data/DATA_CARD.md](data/DATA_CARD.md), [eval/benchmark.csv](eval/benchmark.csv), [eval/metric_spec.yaml](eval/metric_spec.yaml) | Bản CP3 có Data Card, 24 câu thử và 4 metric |
-| [eval/README.md](eval/README.md), [eval/report.md](eval/report.md) | Hồ sơ và kết quả đánh giá lượt 1 |
-| [cost/personas.yaml](cost/personas.yaml), [cost/cost-estimate.md](cost/cost-estimate.md) | Mô phỏng chi phí ở giai đoạn sau |
-| [slides/outline.md](slides/outline.md), [reflection/TEMPLATE.md](reflection/TEMPLATE.md) | Slide và reflection ở giai đoạn sau |
+| [eval/README.md](eval/README.md), [eval/report.md](eval/report.md) | Hồ sơ và kết quả đánh giá cả hai lượt |
+| [cost/personas.yaml](cost/personas.yaml), [cost/cost-estimate.md](cost/cost-estimate.md) | Hồ sơ chi phí CP4 theo 3 kịch bản |
+| [slides/outline.md](slides/outline.md), [reflection/TEMPLATE.md](reflection/TEMPLATE.md) | Slide CP4 đã có. Reflection cá nhân thuộc hạn cuối ngày |
+
+<a id="minh-chung-cp4"></a>
 
 ## Bảy hạng mục bắt buộc — nằm ở file nào
 
 | Hạng mục | Nơi lưu | Tiến độ |
 |---|---|---|
-| Bằng chứng pain | `evidence/` | 6/8 bài công khai nêu khó khăn, gồm 2/4 bài tiếng Việt |
-| Impact có số | `spec.md` §2 | Đã so ba hướng. D01 ghi nhận một lần hỏi thêm. §2 tính riêng một kịch bản ước tính thời gian đọc. |
-| Thiết kế giải pháp | `spec.md` §4 | Có sơ đồ và mô tả luồng CP2 |
-| Bản chạy thử làm trọn lát cắt | `codebase/` | Demo web gọi cùng luồng `answer()` với bộ eval |
-| Bộ câu thử, metric và đánh giá | `data/`, `eval/` | 24 câu ở CP3, lượt 1 đạt 8/24 |
-| Mô phỏng chi phí | `cost/` | Chưa làm |
-| Slide, demo, video | [Xem video trên Drive](https://drive.google.com/file/d/1LlJPt7M4MHb9uMjfhDdBzO4gn5gqm0f1/view?usp=sharing) · [MP4 trong repo](demo-cp3-web.mp4) | Video CP3 dài 30 giây, đã kiểm tra quyền xem khi không đăng nhập. Slide và PDF thuộc CP4. |
+| ✓ Bằng chứng pain | `evidence/` | 6/8 bài công khai nêu khó khăn, gồm 2/4 bài tiếng Việt |
+| ✓ Impact có số | `spec.md` §2 | Đã so ba hướng. D01 ghi nhận một lần hỏi thêm. §2 tính riêng một kịch bản ước tính thời gian đọc. |
+| ✓ Thiết kế giải pháp | `spec.md` §4 | Có sơ đồ và mô tả luồng CP2 |
+| ✓ Bản chạy thử làm trọn lát cắt | `codebase/` | Demo web gọi cùng luồng `answer()` với bộ eval |
+| ✓ Bộ câu thử, metric và đánh giá | `data/`, `eval/` | 24 câu, hai lượt đạt 8/24 và 15/24. [Báo cáo](eval/report.md) |
+| ✓ Mô phỏng chi phí | [CSV 50 phiên](cost/simulate-1.csv) · [Bảng chi phí](cost/cost-estimate.md) | Đã chạy thật, có chi phí/task và 3 kịch bản cho 2 mức giá |
+| ✓ Slide, demo, video | [Xem video trên Drive](https://drive.google.com/file/d/1LlJPt7M4MHb9uMjfhDdBzO4gn5gqm0f1/view?usp=sharing) · [MP4 trong repo](demo-cp3-web.mp4) | Video 30 giây và [bộ slide CP4](demo-slides.pdf). |

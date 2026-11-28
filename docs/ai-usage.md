@@ -22,3 +22,5 @@ Nhóm sử dụng Codex để đọc bộ đề, đối chiếu yêu cầu CP1/C
 CP2: Bảo dùng Codex để tổng hợp Canvas, mô tả luồng theo code, nối các kịch bản với benchmark và chuẩn bị nội dung nộp trong README.
 
 CP3: Bảo dùng Codex đối chiếu các bài công khai, đếm lại bảng D01–D08, đọc mô tả Review Highlights của Amazon và tổng hợp §0–§7. Codex kiểm tra khung, đối chiếu trace và tính lại điểm trên file lượt 1 của Hiệp. Theo yêu cầu của Bảo, Codex thao tác trên giao diện web của nhóm, quay lượt gọi OpenRouter thật, xuất video 30 giây và kiểm tra file trên Drive khi không đăng nhập.
+
+CP4: Codex cấu hình ba persona, chạy `python run.py simulate --rate-from eval/run-2.csv` bằng OpenRouter và đối chiếu CSV với trace. Codex dùng số đo của `simulate-1@20261128-140543` để cập nhật chi phí, spec và nội dung nộp cho phòng H201 do đội trưởng xác nhận. Tỷ lệ tiếp cận, cơ cấu persona và giá trị thời gian trong báo cáo là giả định.

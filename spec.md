@@ -110,16 +110,22 @@ Khi có đủ dữ liệu, người mua nhận nhãn, trích nguồn và hai đi
 - **Lượt 1 (CP3)** đạt **8/24 (33%)**, gồm 2/8 câu thường, 3/12 câu khó và 3/4 câu từ chối. Ba câu B05, B06 và B10 lỗi khi xử lý, được tính trượt. Lượt 1 chưa đạt ngưỡng §7. Run ID `run-1@20261127-192447`, model `openai/gpt-4o-mini`. [Kết quả từng câu](eval/run-1.csv) · [Trace](traces/run-1.jsonl) · [Báo cáo và cách chấm](eval/report.md)
 - **Lượt 2 (CP4)** đạt **15/24 (62%)**, gồm 7/8 câu thường, 4/12 câu khó và 4/4 câu từ chối, không câu nào có câu bị cấm. Vẫn chưa đạt ngưỡng §7 (cần ≥ 70%). Theo metric: M1 24/24, M2 12/19, M3 17/19, M4 đạt. Run ID gốc `run-4@20261128-102739`. [Kết quả từng câu](eval/run-2.csv) · [Trace](traces/run-2.jsonl) · [Báo cáo](eval/report.md)
 
-## §8. Chi phí khi dùng thật *(guide 4.2)*
-- Persona + giá: `cost/personas.yaml` · lượt mô phỏng: `cost/simulate-__.csv` (__ phiên)
-- Chi phí / task thành công: __ (model __) · __ (model __)
-- Chi phí / tháng ở quy mô thật: thấp __ · cơ sở __ · cao __ → chi tiết `cost/cost-estimate.md`
-- So với impact / người / tháng (§2): đáng làm không, vì sao:
+## §8. Chi phí khi dùng thật
+
+Chạy 50 phiên trên ba persona bằng `openai/gpt-4o-mini`, seed 42. Lượt `simulate-1@20261128-140543` ghi 67 lượt hỏi, 50/50 phiên hợp lệ. Với tỷ lệ đạt 15/24, chi phí mỗi task thành công là **0,001199 USD**. Quy đổi cùng lượng token và tỷ lệ đạt theo giá `gpt-6.2-sol` cho kết quả **0,017521 USD**. [Cấu hình](cost/personas.yaml) · [CSV](cost/simulate-1.csv) · [Trace](traces/simulate-1.jsonl)
+
+| Giá model | 61 người/tháng | 610 người/tháng | 6.100 người/tháng |
+|---|---:|---:|---:|
+| GPT-4o mini | 0,0904 USD | 0,9041 USD | 9,04 USD |
+| GPT-6.2 Sol (quy đổi) | 1,3216 USD | 13,2157 USD | 132,16 USD |
+
+Ba quy mô và tần suất dùng là giả định. Ở kịch bản cơ sở, tiền token của GPT-4o mini là 0,001482 USD/người/tháng. §2 ước tính 5 phút đọc thủ công/lượt. Với giả định tiết kiệm 1 phút/lượt và định giá 3 USD/giờ, giá trị tương ứng 0,13 USD/người/tháng. **Tiếp tục thử nghiệm** để đo thời gian tiết kiệm thực và cải thiện 9 câu còn trượt. [Phép tính và nguồn](cost/cost-estimate.md)
 
 ## §9. Rủi ro & an toàn
-- Dữ liệu: đã ẩn danh gì, không thu gì, không đưa gì vào model gói miễn phí:
-- AI **không được** làm gì kể cả khi người dùng yêu cầu:
-- Ai có thể bị hại nếu AI sai, và nhóm chặn thế nào:
+
+- **Dữ liệu gửi đi.** Nguồn review không chứa tên tài khoản. Nhóm che số điện thoại, email và đường dẫn khi chuẩn bị dữ liệu demo. Khi dùng OpenRouter, tên sản phẩm, yêu cầu và nội dung review đã dán sẽ được gửi đến nhà cung cấp. Giao diện nhận văn bản tự do, nên người trình diễn chỉ dùng review công khai đã làm sạch và bỏ thông tin cá nhân trước khi gửi. [Data Card](data/DATA_CARD.md) · [Luồng gửi API](codebase/ai.py)
+- **Giới hạn quyết định.** Soi Review gợi ý nhãn và dẫn mã review để người mua tự kiểm. Hệ thống từ chối viết review hộ, chọn mua hộ và quy kết người bán lừa đảo. Nhóm kiểm yêu cầu ngoài phạm vi và lệnh chèn trong review bằng các câu B12–B14, B23–B24. [Chuẩn đầu ra](docs/answer-format.md) · [Kết quả từng câu](eval/run-2.csv)
+- **Ai chịu ảnh hưởng.** Bỏ nhầm lời chê có căn cứ có thể làm người mua thấy điểm sao quá cao. Giữ nhầm review spam có thể khiến người mua hiểu sai về người bán. Giao diện cho xem lý do, điểm gốc, điểm sau lọc và số review được giữ. Ở B21 lượt 2, hệ thống vẫn giữ nhầm R9 và loại nhầm R10. [Phân tích lỗi](eval/report.md)
 
 ## §10. Phân công & changelog
 - Bảo tổng hợp hồ sơ và phụ trách nộp checkpoint. Sơn phụ trách bằng chứng, Phong triển khai bản chạy, Hiệp xây dựng benchmark và metric. Hiệp và Sơn chấm chéo ở CP2. [Phân công](TEAMS.md)
@@ -143,6 +149,7 @@ Khi có đủ dữ liệu, người mua nhận nhãn, trích nguồn và hai đi
 | 28/11 · CP4 | Đối chiếu nhãn thấp với đoạn trích gốc và kiểm tra sắc thái độc lập với số sao. Nếu dấu hiệu thiếu căn cứ, giữ review ở mức “Chưa rõ độ tin cậy”. | Hạn chế loại nhầm review chê có căn cứ, như B09 và B21 ở lượt 1. [Báo cáo eval](eval/report.md) |
 | 28/11 · CP4, sau lần thử 10:11 | Yêu cầu model trả phân tích theo từng mã review, giữ review thiếu phân tích ở mức “Chưa rõ”, nhận diện lời khen thuần chung chung và tách yêu cầu chọn hộ sản phẩm. | Lần thử có 5 câu không có đầu ra do thiếu nhãn, còn giữ lời khen không có chi tiết và vẫn xử lý sai nhánh ở B24. [Báo cáo eval](eval/report.md) |
 | 28/11 · CP4, sau lần thử 10:22 | Nhận diện chỉ dẫn nhắm vào hệ thống ở review, từ chối yêu cầu rõ ràng trước khi gọi model và đặt mức token theo số review. Bổ sung phân biệt lời khen giao nhận với chi tiết sử dụng. | B12 còn giữ review chứa chỉ dẫn, B23–B24 gặp HTTP 402 và B03 vẫn loại nhầm review có chi tiết. [Báo cáo eval](eval/report.md) |
+| 28/11 · 14:13 | Hoàn thiện §8–§9, ghi phòng H201, cập nhật bảng chi phí bằng lượt mô phỏng 50 phiên. | Dùng token từ `simulate-1@20261128-140543`, tỷ lệ đạt 15/24 và hai đơn giá của BTC để tính chi phí. [Chi tiết](cost/cost-estimate.md) |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 
