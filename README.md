@@ -12,13 +12,13 @@
 |---|---|
 | Bằng chứng | 6/8 bài đăng công khai kể rằng người mua gặp khó khi dùng review để chọn laptop hoặc tai nghe. Riêng phần tiếng Việt có 2/4 bài. Cả 8 bài đều có trích dẫn, đường dẫn và lý do xếp loại. [Tóm tắt](evidence/summary.md) · [Từng bài gốc](evidence/data-mining.md) |
 | Bộ câu thử | 24 câu gồm 8 câu thường, 12 câu khó và 4 câu từ chối. 18 câu dùng review từ ViSpamReviews v2. [Benchmark](eval/benchmark.csv) · [Nguồn dữ liệu](data/DATA_CARD.md) |
-| Demo | Video 30 giây ghi lại một lượt phân tích tai nghe bằng `openai/gpt-4o-mini` qua OpenRouter. Điểm gốc 3,7 từ ba review, còn 3,0 khi giữ lại hai review. Cuối video là kết quả chấm lượt 1. [Tải MP4](demo-cp3.mp4) |
+| Video demo | [Xem video trên Drive](https://drive.google.com/file/d/1LlJPt7M4MHb9uMjfhDdBzO4gn5gqm0f1/view?usp=sharing) · [Tải MP4](demo-cp3-web.mp4). Trên giao diện Soi Review, người mua phân tích ba review tai nghe bằng `openai/gpt-4o-mini` qua OpenRouter. Điểm từ 3,7 còn 3,0 sau khi giữ R1 và R3. |
 | Kết quả lượt 1 | **8/24 câu đạt (33%)**. Câu thường 2/8, câu khó 3/12, câu từ chối 3/4. Run ID `run-1@20261127-192447`. Lượt 1 chưa đạt chuẩn §7. [CSV đã chấm](eval/run-1.csv) · [Trace](traces/run-1.jsonl) · [Báo cáo](eval/report.md) |
 | Spec | §0–§7 ghi bằng chứng, so sánh ba hướng, kiến trúc, cách đọc đầu ra và chuẩn đạt đã chốt ở CP2. [Đọc spec](spec.md) |
 
-**Trước khi gửi form.** Nhóm cần link video YouTube không công khai hoặc Google Drive cho phép bất kỳ ai có link xem được. Theo hồ sơ chấm, Hiệp còn cần xác nhận phần chấm tay M3 và M4. §2 đã ghi một trường hợp phải hỏi thêm, số phút người mua Việt Nam dành để đọc review mỗi tháng vẫn chưa đo.
+**Phần chưa xong.** Lượt 1 còn ba câu lỗi xử lý (B05, B06, B10) và một câu từ chối sai (B24). Hiệp đã kiểm tay M3, M4 và xác nhận 8/24. Nhóm sẽ đo lại trên cùng bộ câu thử ở CP4. Thời gian người mua thực sự tiết kiệm được mỗi tháng vẫn cần đo.
 
-**Chạy lại demo.** Điền `MODEL_PROVIDER=openrouter`, `MODEL_NAME=openai/gpt-4o-mini` và khóa riêng vào file `.env` cạnh `run.py`. Chạy `python run.py` rồi dán ví dụ tai nghe ở mục CP2. Có thể kiểm lại hồ sơ bằng `python run.py check` và `python run.py score eval/run-1.csv`.
+**Chạy lại demo.** Điền `MODEL_PROVIDER=openrouter`, `MODEL_NAME=openai/gpt-4o-mini` và khóa riêng vào file `.env` cạnh `run.py`. Chạy `python run.py`, mở giao diện web, bấm **Dùng ví dụ** rồi **Phân tích review**. Cuối kết quả có tên model và số token của lượt gọi. Có thể kiểm lại hồ sơ bằng `python run.py check` và `python run.py score eval/run-1.csv`.
 
 ## CP2 — Nội dung nộp form
 
@@ -145,9 +145,9 @@ Codex hỗ trợ đọc đề, chuẩn bị cấu trúc repo, ghi hồ sơ từ 
 | Hạng mục | Nơi lưu | Tiến độ |
 |---|---|---|
 | Bằng chứng pain | `evidence/` | 6/8 bài công khai nêu khó khăn, gồm 2/4 bài tiếng Việt |
-| Impact có số | `spec.md` §2 | Đã so ba hướng và đếm một lần phải hỏi thêm ở trường hợp D01. Số phút mỗi tháng chưa đo |
+| Impact có số | `spec.md` §2 | Đã so ba hướng. D01 ghi nhận một lần hỏi thêm. §2 tính riêng một kịch bản ước tính thời gian đọc. |
 | Thiết kế giải pháp | `spec.md` §4 | Có sơ đồ và mô tả luồng CP2 |
 | Bản chạy thử làm trọn lát cắt | `codebase/` | Demo web gọi cùng luồng `answer()` với bộ eval |
 | Bộ câu thử, metric và đánh giá | `data/`, `eval/` | 24 câu ở CP3, lượt 1 đạt 8/24 |
 | Mô phỏng chi phí | `cost/` | Chưa làm |
-| Slide, demo, video | [Video CP3](demo-cp3.mp4) và `slides/` | Đã có MP4 cho CP3. Slide và PDF thuộc mốc sau |
+| Slide, demo, video | [Xem video trên Drive](https://drive.google.com/file/d/1LlJPt7M4MHb9uMjfhDdBzO4gn5gqm0f1/view?usp=sharing) · [MP4 trong repo](demo-cp3-web.mp4) | Video CP3 dài 30 giây, đã kiểm tra quyền xem khi không đăng nhập. Slide và PDF thuộc CP4. |

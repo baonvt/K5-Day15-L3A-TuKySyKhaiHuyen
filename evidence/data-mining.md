@@ -26,9 +26,9 @@ Giai đoạn này là nghiên cứu tài liệu công khai. Chưa thực hiện 
 
 Số tài liệu không phải số người gặp pain. Không dùng tỷ lệ tài liệu đề cập vấn đề để suy ra tỷ lệ review giả hoặc tỷ lệ người mua bị ảnh hưởng.
 
-## 3. Phép đếm x/N của nhóm
+## 3. Phép đếm x/N ở thời điểm CP2
 
-**Chưa thực hiện.** Chưa có tập review được chọn theo một quy tắc cố định, nhãn từng dòng hoặc mẫu số N để báo cáo tỷ lệ pain. Các tỷ lệ trong tài liệu là kết quả của tác giả nguồn, không phải số nhóm tự đếm.
+**Tại CP2, nhóm chưa thực hiện phép đếm.** Chưa có tập review được chọn theo một quy tắc cố định, nhãn từng dòng hoặc mẫu số N để báo cáo tỷ lệ pain. Các tỷ lệ trong tài liệu là kết quả của tác giả nguồn, không phải số nhóm tự đếm.
 
 Vì chưa có phép đếm này, chưa có script đếm raw review để chạy lại. Không dựng một phép đếm tài liệu rồi coi đó là tỷ lệ người dùng gặp pain.
 
@@ -40,7 +40,7 @@ Xem [S01](public-sources.md#s01), [S02](public-sources.md#s02), [S03](public-sou
 
 Nguồn công khai hỗ trợ bối cảnh vấn đề và cung cấp số liệu nghiên cứu bên ngoài. Chưa đo thời gian đọc/tổng hợp review, quy mô pain tại Việt Nam, nguyên nhân đổi trả, hoặc hiệu quả giải pháp. Chưa có nguồn để tính impact mỗi tháng của người dùng mục tiêu.
 
-CP2: đã bắt đầu tìm bằng chứng và có tài liệu, trích dẫn. CP3: đã bổ sung phần trích dẫn; chưa tự đánh dấu đủ toàn bộ ngưỡng bằng chứng. Nếu tiếp tục đường đào data, cần chọn mẫu, định nghĩa nhãn và phép đếm trước khi thu mẫu tiếp theo, rồi ghi x/N, tỷ lệ và ví dụ kiểm lại được theo guide 1.2.
+Ở CP2, nhóm đã có tài liệu và trích dẫn. Đến CP3, nhóm dùng quy tắc chọn bài và gắn nhãn ở mục 6 để lập bảng tám bài ở mục 7. Người đọc có thể đếm lại từng dòng và mở nguồn gốc.
 
 ## 6. Cách chọn mẫu CP3, ghi trước khi tìm và đếm
 

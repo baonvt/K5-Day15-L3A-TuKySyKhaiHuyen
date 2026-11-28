@@ -30,7 +30,7 @@ Trong 8 bài được chọn, **6/8 (75%)** kể một khó khăn khi dùng revi
 
 **Một trường hợp đếm được.** Tháng 5/2021, D01 ghi nhận 1 người × 1 đợt chọn laptop được kể × 1 bài đăng hỏi thêm về thân máy = **1 lần phải hỏi thêm trong tháng đó**. Ở D05, tác giả kể đã mất hai tuần tìm hiểu một lần nâng cấp tai nghe. Hai tuần là quãng thời gian từ khi bắt đầu tìm, gồm cả xem video. [Bài D01](https://voz.vn/t/phan-van-chon-laptop-gaming-co-35tr.309464/) · [Bài D05](https://www.reddit.com/r/headphones/comments/17gamfe/how_do_you_get_info_from_this_sub_cause_im/)
 
-**Thời gian đọc review mỗi tháng** = số người trong nhóm mục tiêu × số lượt đọc trung bình mỗi người trong tháng × số phút trung bình mỗi lượt (tính trên các lượt đọc). Tám bài chưa cho biết đủ ba số này. Để tính cho người mua ở Việt Nam, cần ghi số lần và số phút họ thực sự đọc review trong cùng một tháng. Muốn biết bản chạy tiết kiệm được bao lâu, còn phải đo thời gian hoàn thành cùng tác vụ khi có công cụ.
+**Ước tính cho một người trong tháng có một lượt chọn mua.** Với kịch bản một người có một lượt như D01, thời gian đọc và đối chiếu là **1 người × 1 lượt trong tháng × 5 phút/lượt = 5 phút trong tháng đó**. Mỗi lượt lấy 5 review, bằng trung vị số review trong 18 câu `data_that` của benchmark. Mỗi review cần 1 phút để đọc và đối chiếu *(tự ước tính)*. Tần suất thực tế của người mua Việt Nam và số phút công cụ giúp tiết kiệm vẫn cần đo. [Trường hợp D01](evidence/data-mining.md#7-bài-đã-đọc-và-kết-quả-đếm) · [18 câu dùng review thật](eval/benchmark.csv)
 
 ## §3. Giải pháp tương tự
 
@@ -63,13 +63,13 @@ Ba nhãn dự đoán là **Độ tin cậy cao**, **Chưa rõ độ tin cậy** 
 
 **Hình dạng.** Workflow cố định phù hợp vì mỗi sản phẩm đều đi qua cùng các bước phân loại, kiểm tra và tổng hợp. Phần tính điểm dùng phép trung bình có thể kiểm tra lại bằng code.
 
-**Nguồn dữ liệu và các bước xử lý.** Người mua dán review vào dòng lệnh. Luồng dùng các hàm trong [agent.py](codebase/agent.py) và gọi [ai.py](codebase/ai.py) một lần khi cần phân tích. Ở chế độ giả, mọi bước chạy trên máy. Khi chọn OpenRouter, code gửi yêu cầu, tên sản phẩm và nội dung review đến model qua API. Phần đối chiếu trích dẫn và tính sao vẫn chạy trên máy.
+**Nguồn dữ liệu và các bước xử lý.** Người mua dán review hoặc nhập từng review và số sao trong giao diện web Soi Review. Luồng dùng các hàm trong [agent.py](codebase/agent.py) và gọi [ai.py](codebase/ai.py) một lần khi cần phân tích. Ở chế độ giả, mọi bước chạy trên máy. Khi chọn OpenRouter, code gửi yêu cầu, tên sản phẩm và nội dung review đến model qua API. Phần đối chiếu trích dẫn và tính sao vẫn chạy trên máy.
 
 | Bước | Đầu vào | Đầu ra và cách kiểm |
 |---|---|---|
 | Tách bằng `_parse_input` | Chuỗi gồm các đoạn phân cách bằng `\|\|` | Tên sản phẩm, yêu cầu và tối đa 30 review có mã R1, R2…; giữ dấu thiếu sao `[?]`. |
-| Phân loại bằng `call_model` | Yêu cầu và các review đã đánh mã | JSON chứa quyết định xử lý, nhãn, lý do và trích đoạn. Chế độ giả dùng quy tắc cục bộ. Ở chế độ OpenRouter, code đọc số token từ trường `usage` của phản hồi API. |
-| Chặn kết quả lỗi bằng `_read_labels` và `_summary_lines` | JSON và văn bản review gốc | Kiểm đủ mã, nhãn hợp lệ, lý do có chữ và từng trích đoạn thuộc review được giữ. Nhãn thiếu, trùng mã hoặc sai cấu trúc gây lỗi. Nếu một ý dẫn mã ngoài tập giữ hoặc trích chữ không khớp, code bỏ riêng ý đó rồi tiếp tục. Người chấm đối chiếu lý do với review gốc. |
+| Phân loại bằng `call_model` | Yêu cầu và các review đã đánh mã | JSON chứa quyết định xử lý, mã dấu hiệu và trích đoạn cho từng review, cùng các ý tóm tắt có mã nguồn. Chế độ giả dùng quy tắc cục bộ. Ở chế độ OpenRouter, code đọc số token từ trường `usage` của phản hồi API. |
+| Chặn kết quả lỗi bằng `_read_labels` và `_summary_lines` | JSON và văn bản review gốc | Kiểm đủ mã review, chuyển mã dấu hiệu thành nhãn và lời giải thích, rồi đối chiếu đoạn trích với review gốc. Các ý tóm tắt phải dẫn review được giữ. Nhãn thiếu, trùng mã hoặc sai cấu trúc gây lỗi. Nếu một ý dẫn mã ngoài tập giữ hoặc trích chữ không khớp, code bỏ riêng ý đó rồi tiếp tục. Người chấm đối chiếu lý do với review gốc. |
 | Tính điểm bằng `_stars_line` | Số sao và các mã được giữ | Trung bình trước/sau lọc, làm tròn một chữ số thập phân. Khi thiếu mẫu số, hiển thị lý do. |
 
 **Quyền quyết định.** Hệ thống gợi ý. Người mua đối chiếu lý do, nguồn và số review còn lại rồi tự quyết định mua. Gắn nhãn sai có thể che mất một khiếu nại có ích hoặc khiến người mua quá tin vào lời quảng cáo.
@@ -100,7 +100,7 @@ Các hàng dưới đây mô tả hành vi **mong đợi** để đối chiếu 
 
 ## §6. Trải nghiệm của người mua
 
-Trong ví dụ tai nghe ở [README](README.md), người mua thấy pin dùng được hai ngày (R1) và tai trái mất tiếng sau ba ngày (R3). R2 kêu gọi mua nên bị gắn “Độ tin cậy thấp”. Điểm sao từ 3,7 trên ba review còn 3,0 trên hai review được giữ. Đã chạy lại ví dụ này bằng `openai/gpt-4o-mini` qua OpenRouter. Phiên demo gọi model một lần, dùng 1.076 token đầu vào và 146 token đầu ra. [Xem demo 30 giây](demo-cp3.mp4)
+Trong ví dụ tai nghe ở [README](README.md), người mua thấy pin dùng được hai ngày (R1) và tai trái mất tiếng sau ba ngày (R3). Trong lượt quay, hệ thống gắn R2 nhãn “Độ tin cậy thấp” vì chỉ khen shop chung chung. Điểm sao từ 3,7 trên ba review còn 3,0 trên hai review được giữ. Giao diện hiển thị `openai/gpt-4o-mini`, 1.408 token vào và 172 token ra. [Xem video trên Drive](https://drive.google.com/file/d/1LlJPt7M4MHb9uMjfhDdBzO4gn5gqm0f1/view?usp=sharing)
 
 Khi có đủ dữ liệu, người mua nhận nhãn, trích nguồn và hai điểm sao. Nếu thông tin mơ hồ, mức “Chưa rõ độ tin cậy” cho biết review cần xem thêm. Khi thiếu đầu vào, người mua có thể sửa hoặc bổ sung review rồi chạy lại. Với khiếu nại và yêu cầu ngoài phạm vi, hành vi mong đợi được ghi ở B05, B06, B13 và B14.
 
@@ -137,7 +137,8 @@ Khi có đủ dữ liệu, người mua nhận nhãn, trích nguồn và hai đi
 | 27/11/2026 · sau CP2 | Tạo lý do gắn nhãn từ mã dấu hiệu và đoạn trích đã đối chiếu với review. | Khắc phục việc chép lại nội dung thay cho lời giải thích, cùng dạng lỗi được ghi nhận ở lượt 1, gồm B05 và B06. |
 | 27/11/2026 · sau CP2 | Bổ sung nhập từng review có ô chọn sao và tách bộ review đã dán. | Người dùng có thể sửa nội dung và số sao trên giao diện trước khi phân tích. |
 | 27/11 · chuẩn bị CP3 | Bảo tổng hợp bằng chứng, so sánh ba hướng, đối chiếu thiết kế với code và cập nhật trạng thái lượt 1. | Theo D01–D08 và bộ câu thử hiện có. |
-| 27/11 · CP3 | Đối chiếu điểm và trace lượt 1 của Hiệp. Ghi phiên demo tai nghe gọi OpenRouter và lệnh tính điểm vào video 30 giây. | B13 từ chối đúng trong lượt thật. B24 trả lời sai loại. [Video](demo-cp3.mp4) · [Báo cáo](eval/report.md) |
+| 27/11 · CP3 | Bảo đối chiếu điểm và trace lượt 1 của Hiệp để điền §7. | B13 từ chối đúng trong lượt thật. B24 trả lời sai loại. [Báo cáo](eval/report.md) |
+| 28/11 · CP3 | Bổ sung video web 30 giây, sáu trích dẫn nguyên văn trong bản tóm tắt và cách ước tính thời gian đọc ở §2. Hiệp đã kiểm tay M3, M4 và xác nhận 8/24 ở lượt 1. | Đối chiếu bản quay với file Drive khi không đăng nhập và tính lại điểm từ CSV đã chấm. |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 
