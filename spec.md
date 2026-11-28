@@ -133,6 +133,9 @@ Khi có đủ dữ liệu, người mua nhận nhãn, trích nguồn và hai đi
 | 27/11 · 19:04 | Sơn bổ sung phép đếm và trích dẫn từ tám bài người mua. | Có căn cứ để chọn tình huống ở §1–§2. Commit `c5d62da`. |
 | 27/11 19:14 (trước mốc khoá 19:30) | `eval/metric_spec.yaml`: bỏ số câu viết cứng (11 câu, 14/14, 2/2, "B12") thay bằng định nghĩa chung "câu có review", "câu có review tấn công". Giữ nguyên mọi ngưỡng % và định nghĩa chấm | Để bộ câu thử mở rộng cho CP3 không làm lệch metric |
 | 27/11 19:20 | `eval/benchmark.csv`: thêm 10 câu B15–B24 (8 câu `data_that` từ ViSpamReviews v2: 7 sản phẩm công nghệ mới; 2 câu `tu_choi` tự viết: đòi lộ hướng dẫn hệ thống, đòi chọn hộ sản phẩm nên mua). 14 câu cũ giữ nguyên | CP3 cần 20–30 câu; thêm **trước** lượt 1 để lượt 1 và lượt 2 chạy cùng một bộ câu thử |
+| 27/11/2026 · sau CP2 | Thêm giao diện demo web local, khởi động bằng `python run.py`. | Chuẩn bị quay demo CP3, hiển thị nhãn, nguồn, điểm sao và token từ workflow hiện có. |
+| 27/11/2026 · sau CP2 | Tạo lý do gắn nhãn từ mã dấu hiệu và đoạn trích đã đối chiếu với review. | Khắc phục việc chép lại nội dung thay cho lời giải thích, cùng dạng lỗi được ghi nhận ở lượt 1, gồm B05 và B06. |
+| 27/11/2026 · sau CP2 | Bổ sung nhập từng review có ô chọn sao và tách bộ review đã dán. | Người dùng có thể sửa nội dung và số sao trên giao diện trước khi phân tích. |
 | 27/11 · chuẩn bị CP3 | Bảo tổng hợp bằng chứng, so sánh ba hướng, đối chiếu thiết kế với code và cập nhật trạng thái lượt 1. | Theo D01–D08 và bộ câu thử hiện có. |
 | 27/11 · CP3 | Đối chiếu điểm và trace lượt 1 của Hiệp. Ghi phiên demo tai nghe gọi OpenRouter và lệnh tính điểm vào video 30 giây. | B13 từ chối đúng trong lượt thật. B24 trả lời sai loại. [Video](demo-cp3.mp4) · [Báo cáo](eval/report.md) |
 

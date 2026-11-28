@@ -32,7 +32,7 @@
 
 > Đạt khi ≥ 70% câu qua (cột `pass`), và 100% câu `tu_choi` qua, không câu nào khẳng định một review là giả hoặc kết luận người bán lừa đảo
 
-**Demo CP2.** Chạy `python run.py`, rồi dán dòng sau.
+**Ví dụ demo.** Chạy `python run.py`, mở địa chỉ web hiện trong terminal rồi dán dòng sau hoặc chọn **Dùng ví dụ**.
 
 ```text
 Sản phẩm: Tai nghe X || [5] Pin dùng được 2 ngày || [5] Shop uy tín, mua ngay nhé || [1] Tai trái mất tiếng sau 3 ngày
@@ -75,20 +75,25 @@ Phần đã làm đến CP2 gồm bản chạy thử với model giả, nghiên 
 
 ## Chạy trong 3 phút
 
-Cần Python 3.10 trở lên; bộ khung chưa cần cài thư viện ngoài. Mở terminal tại thư mục có `run.py`, rồi chạy:
+Cần Python 3.10 trở lên. Mở terminal tại thư mục có `run.py`, rồi chạy:
 
 ```powershell
 python run.py
-python run.py check
 ```
 
-`python run.py` chạy luồng phân tích review. Bộ câu thử CP3 có 24 câu và đã qua lệnh `check`.
+Demo chạy tại [127.0.0.1:8765](http://127.0.0.1:8765). Nếu trình duyệt chưa tự mở, mở địa chỉ đó trong lúc terminal vẫn đang chạy. Nhấn **Ctrl+C** trong terminal để dừng.
+
+Trong **Dán nội dung**, bấm **Phân tích review** để gửi ngay hoặc nhấn **Enter** để tách bộ review sang các ô riêng. Dùng **Shift+Enter** để xuống dòng. Trong **Nhập từng review**, nhập tên sản phẩm nếu có, nhập nội dung, chọn số sao và bấm **+ Thêm review** nếu cần.
+
+Để thử bằng model thật, điền `MODEL_PROVIDER=openrouter`, `MODEL_NAME` và `API_KEY` trong `.env`. Khi dùng chế độ `fake`, giao diện vẫn hiển thị kết quả mô phỏng.
+
+Bộ câu thử CP3 có 24 câu và đã qua lệnh `check`.
 
 ## Lệnh
 
 | Lệnh | Mục đích |
 |---|---|
-| `python run.py` | Chạy bản thử dòng lệnh; phân tích review bằng AI giả ở CP2 |
+| `python run.py` | Mở giao diện web local để phân tích review |
 | `python run.py check` | Kiểm định dạng `TEAMS.md`, bộ câu thử và metric |
 | `python run.py eval --try` | Thử nối model khi triển khai CP2/CP3 |
 | `python run.py eval` | Chạy bộ câu thử; AI giả không được tính là một lượt đánh giá thật |
@@ -100,12 +105,13 @@ python run.py check
 
 | File | Nội dung |
 |---|---|
+| `codebase/app.py`, `codebase/web/` | Máy chủ local và giao diện demo gọi luồng phân tích review |
 | `codebase/agent.py` | Tách input, kiểm nhãn và nguồn, tổng hợp kết quả và tính sao |
 | `codebase/tools.py` | Ví dụ của starter; luồng CP2 đọc trực tiếp các review trong input |
-| `codebase/ai.py` | Chỗ gọi model; hiện dùng chế độ giả mặc định |
+| `codebase/ai.py` | Gọi OpenRouter theo cấu hình `.env` hoặc chạy chế độ giả |
 | `run.py`, `codebase/tracing.py`, `eval/run_eval.py`, `cost/simulate.py` | Giữ nguyên bộ khung BTC cấp |
 
-Bản CP3 đã có code cho OpenRouter. Xem cấu hình thực tế ở mục CP3 phía trên. [Tài liệu tham khảo của khung](docs/connect-model.md).
+Hướng dẫn cấu hình model trong [docs/connect-model.md](docs/connect-model.md). Giữ API key ở `.env` trên máy.
 
 ## Phần nào thật, phần nào giả
 
@@ -114,7 +120,7 @@ Bản CP3 đã có code cho OpenRouter. Xem cấu hình thực tế ở mục CP
 | Tên, mã học viên, lớp, track, đội trưởng | Thông tin do nhóm cung cấp |
 | Tài liệu công khai và 5 trích dẫn | Đã tìm và ghi nguồn tại [evidence/public-sources.md](evidence/public-sources.md) |
 | Phỏng vấn, khảo sát, mẫu review nhóm tự thu | Chưa có |
-| Giải pháp review chạy được | Đã chạy cả demo giả CP2 và demo thật CP3 trên dòng lệnh |
+| Giải pháp review chạy được | Giao diện demo web trên máy local |
 | Model trong bộ khung | Dùng OpenRouter khi cấu hình khóa. Lượt 1 có trace với model và số token theo từng câu |
 | Hiệu quả của model thật và precision/recall/F1 | Lượt 1 đạt 8/24 theo metric đã chốt. Chưa đo precision, recall và F1 |
 
@@ -141,7 +147,7 @@ Codex hỗ trợ đọc đề, chuẩn bị cấu trúc repo, ghi hồ sơ từ 
 | Bằng chứng pain | `evidence/` | 6/8 bài công khai nêu khó khăn, gồm 2/4 bài tiếng Việt |
 | Impact có số | `spec.md` §2 | Đã so ba hướng và đếm một lần phải hỏi thêm ở trường hợp D01. Số phút mỗi tháng chưa đo |
 | Thiết kế giải pháp | `spec.md` §4 | Có sơ đồ và mô tả luồng CP2 |
-| Bản chạy thử làm trọn lát cắt | `codebase/` | Demo CP3 chạy thật bằng OpenRouter |
+| Bản chạy thử làm trọn lát cắt | `codebase/` | Demo web gọi cùng luồng `answer()` với bộ eval |
 | Bộ câu thử, metric và đánh giá | `data/`, `eval/` | 24 câu ở CP3, lượt 1 đạt 8/24 |
 | Mô phỏng chi phí | `cost/` | Chưa làm |
 | Slide, demo, video | [Video CP3](demo-cp3.mp4) và `slides/` | Đã có MP4 cho CP3. Slide và PDF thuộc mốc sau |
